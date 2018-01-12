@@ -1,0 +1,76 @@
+@startuml
+
+package cards {
+    abstract class Card
+    class Age1Card
+    class Age2Card
+    class Age3Card
+    interface Bonus
+    interface Cost
+}
+
+package decks {
+    abstract class Deck
+    class Age1Deck
+    class Age2Deck
+    class Age3Deck
+}
+package coin {
+    class Coin
+    enum CoinValue {
+        ONE
+        THREE
+    }
+}
+package conflictToken {
+    class ConflictToken
+    enum ConflictTokenValue {
+        MIN_ONE
+        PLUS_ONE
+        PLUS_THREE
+        PLUS_FIVE
+    }
+}
+package resource {
+    class Resource
+    enum ResourceType {
+        WOOD
+        STONE
+        ORE
+        CLAY
+        GLASS
+        LOOM
+        PAPYRUS
+    }
+}
+
+Game *-- "3,7" Player
+Game *-- "0,n" Card
+Player *-- "n" Card
+Player *-- WonderBoard
+WonderBoard *-- "0,n" Coin
+WonderBoard *-- "0,n" ConflictToken
+WonderBoard *-- "0,4" Card
+WonderBoard *-- Resource
+Game *-- "0,n" Coin
+Coin *-- CoinValue
+Game *-- "0,n" ConflictToken
+ConflictToken *-- ConflictTokenValue
+Game *-- Age1Deck
+Game *-- Age2Deck
+Game *-- Age3Deck
+Age1Deck *-- "n" Age1Card
+Age2Deck *-- "n" Age2Card
+Age3Deck *-- "n" Age3Card
+Deck <|-- Age1Deck
+Deck <|-- Age2Deck
+Deck <|-- Age3Deck
+Card <|-- Age1Card
+Card <|-- Age2Card
+Card <|-- Age3Card
+Resource *-- ResourceType
+Card *-- Bonus
+Card *-- Cost
+Cost *-- Coin
+Cost *-- Resource
+@enduml
