@@ -15,13 +15,6 @@ package decks {
     class Age2Deck
     class Age3Deck
 }
-package coin {
-    class Coin
-    enum CoinValue {
-        ONE
-        THREE
-    }
-}
 package conflictToken {
     class ConflictToken
     enum ConflictTokenValue {
@@ -48,12 +41,9 @@ Game *-- "3,7" Player
 Game *-- "0,n" Card
 Player *-- "n" Card
 Player *-- WonderBoard
-WonderBoard *-- "0,n" Coin
 WonderBoard *-- "0,n" ConflictToken
 WonderBoard *-- "0,4" Card
 WonderBoard *-- Resource
-Game *-- "0,n" Coin
-Coin *-- CoinValue
 Game *-- "0,n" ConflictToken
 ConflictToken *-- ConflictTokenValue
 Game *-- Age1Deck
@@ -71,6 +61,5 @@ Card <|-- Age3Card
 Resource *-- ResourceType
 Card *-- Bonus
 Card *-- Cost
-Cost *-- Coin
-Cost *-- Resource
+Cost <|-- Resource
 @enduml
