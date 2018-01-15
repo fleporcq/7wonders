@@ -1,8 +1,8 @@
-package main.java.model.cards;
+package model.cards;
 
-import main.java.model.Age;
-import main.java.model.bonus.Bonus;
-import main.java.model.costs.Cost;
+import model.Age;
+import model.bonus.Bonus;
+import model.costs.Cost;
 
 import java.util.List;
 

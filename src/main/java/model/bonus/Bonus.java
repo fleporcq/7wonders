@@ -1,4 +1,4 @@
-package main.java.model.bonus;
+package model.bonus;
 
 public interface Bonus {
 }

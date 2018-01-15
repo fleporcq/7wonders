@@ -1,7 +1,7 @@
-package main.java.model.costs;
+package model.costs;
 
 
-import main.java.model.Resource;
+import model.Resource;
 
 import java.util.HashMap;
 

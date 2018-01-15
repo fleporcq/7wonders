@@ -1,3 +1,4 @@
 domain/*_backup.pdf
 .gradle
 .idea
+out

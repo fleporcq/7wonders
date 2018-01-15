@@ -1,4 +1,4 @@
-package main.java.model.costs;
+package model.costs;
 
 public interface Cost {
 }
