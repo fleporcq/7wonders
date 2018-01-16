@@ -1,6 +1,9 @@
 package model;
 
+import model.wonderboards.WonderBoard;
+
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Game {
@@ -40,5 +43,14 @@ public class Game {
 
     public boolean isStarted() {
         return started;
+    }
+
+    public void handOutWonderBoards(List<WonderBoard> wonderBoards) {
+        if(wonderBoards.size() < players.size())
+            throw new IllegalArgumentException("They are not enough wonder boards");
+        Collections.shuffle(wonderBoards);
+        for (Player player:players){
+            player.setWonderBoard(wonderBoards.remove(0));
+        }
     }
 }

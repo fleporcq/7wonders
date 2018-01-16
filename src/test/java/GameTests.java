@@ -1,7 +1,12 @@
 import model.Game;
 import model.Player;
 import model.RulesViolationException;
+import model.wonderboards.Side;
+import model.wonderboards.WonderBoard;
 import org.junit.jupiter.api.Test;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -100,5 +105,27 @@ public class GameTests {
         } catch (IllegalArgumentException e) {
             assertEquals("A player with the same name is already in the game", e.getMessage());
         }
+    }
+
+    @Test
+    void testHandOutTheWonderBoards() throws RulesViolationException {
+        Game game = new Game();
+        Player francois = new Player("François");
+        Player louise = new Player("Louise");
+        Player antoine = new Player("Antoine");
+        game.addPlayer(francois);
+        game.addPlayer(louise);
+        game.addPlayer(antoine);
+        game.start();
+        List<WonderBoard> wonderBoards = new ArrayList<>();
+        wonderBoards.add(new WonderBoard("Rhodes", Side.A));
+        wonderBoards.add(new WonderBoard("Alexandria", Side.A));
+        wonderBoards.add(new WonderBoard("Ephesos", Side.B));
+        wonderBoards.add(new WonderBoard("Babylon", Side.B));
+        game.handOutWonderBoards(wonderBoards);
+        assertNotNull(francois.getWonderBoard());
+        assertNotNull(louise.getWonderBoard());
+        assertNotNull(antoine.getWonderBoard());
+        assertEquals(1, wonderBoards.size());
     }
 }
