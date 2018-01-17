@@ -10,17 +10,17 @@ public class PlayerTests {
         try {
             new Player(null);
         } catch (IllegalArgumentException e) {
-            assertEquals("The player's name cannot be empty", e.getMessage());
+            assertEquals("The player's name cannot be null or empty", e.getMessage());
         }
         try {
             new Player("");
         } catch (IllegalArgumentException e) {
-            assertEquals("The player's name cannot be empty", e.getMessage());
+            assertEquals("The player's name cannot be null or empty", e.getMessage());
         }
         try {
             new Player("  ");
         } catch (IllegalArgumentException e) {
-            assertEquals("The player's name cannot be empty", e.getMessage());
+            assertEquals("The player's name cannot be null or empty", e.getMessage());
         }
     }
 }

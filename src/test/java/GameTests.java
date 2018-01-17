@@ -1,11 +1,10 @@
 import model.Game;
 import model.Player;
 import model.RulesViolationException;
-import model.wonderboards.Side;
 import model.wonderboards.WonderBoard;
+import model.wonderboards.WonderBoardFactory;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -117,15 +116,13 @@ public class GameTests {
         game.addPlayer(louise);
         game.addPlayer(antoine);
         game.start();
-        List<WonderBoard> wonderBoards = new ArrayList<>();
-        wonderBoards.add(new WonderBoard("Rhodes", Side.A));
-        wonderBoards.add(new WonderBoard("Alexandria", Side.A));
-        wonderBoards.add(new WonderBoard("Ephesos", Side.B));
-        wonderBoards.add(new WonderBoard("Babylon", Side.B));
+
+        WonderBoardFactory wonderBoardFactory = new WonderBoardFactory();
+        List<WonderBoard> wonderBoards = wonderBoardFactory.shuffle();
         game.handOutWonderBoards(wonderBoards);
         assertNotNull(francois.getWonderBoard());
         assertNotNull(louise.getWonderBoard());
         assertNotNull(antoine.getWonderBoard());
-        assertEquals(1, wonderBoards.size());
+        assertEquals(4, wonderBoards.size());
     }
 }
