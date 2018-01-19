@@ -14,6 +14,8 @@ public class WonderBoard {
 
     List<Resource> resources = new ArrayList<>();
 
+    int coins;
+
     public WonderBoard(City city, Side side) {
         if (city == null)
             throw new IllegalArgumentException("The wonderboard's city cannot be null");
@@ -35,13 +37,16 @@ public class WonderBoard {
         this.resources.add(resource);
     }
 
-    @Override
-    public String toString() {
-        return city + " " + side;
+    public void addCoins(int amount) {
+        coins += amount;
     }
 
-    public boolean has(ResourceType type) {
-        return has(type, 1);
+    public void removeCoins(int amount) {
+        coins -= amount;
+    }
+
+    public int getCoins() {
+        return coins;
     }
 
     public boolean has(ResourceType type, int count) {
@@ -51,5 +56,14 @@ public class WonderBoard {
                 total++;
         }
         return total >= count;
+    }
+
+    public boolean has(ResourceType type) {
+        return has(type, 1);
+    }
+
+    @Override
+    public String toString() {
+        return city + " " + side;
     }
 }
