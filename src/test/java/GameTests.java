@@ -12,7 +12,7 @@ import static org.junit.jupiter.api.Assertions.*;
 public class GameTests {
 
     @Test
-    void testAddPlayersToGame() throws RulesViolationException {
+    void testAddPlayersToGame() {
         Game game = new Game();
         game.addPlayer(new Player("François"));
         game.addPlayer(new Player("Louise"));
@@ -41,7 +41,7 @@ public class GameTests {
     }
 
     @Test
-    void testStartTheGame() throws RulesViolationException {
+    void testStartTheGame() {
         Game game = new Game();
         game.addPlayer(new Player("François"));
         game.addPlayer(new Player("Louise"));
@@ -54,7 +54,7 @@ public class GameTests {
     }
 
     @Test
-    void testStartTheGameWithNotEnoughPlayer() throws RulesViolationException {
+    void testStartTheGameWithNotEnoughPlayer() {
         Game game = new Game();
         game.addPlayer(new Player("François"));
         game.addPlayer(new Player("Louise"));
@@ -67,7 +67,7 @@ public class GameTests {
     }
 
     @Test
-    void testAddPlayerAfterTheGameStarts() throws RulesViolationException {
+    void testAddPlayerAfterTheGameStarts() {
         Game game = new Game();
         game.addPlayer(new Player("François"));
         game.addPlayer(new Player("Louise"));
@@ -81,7 +81,7 @@ public class GameTests {
     }
 
     @Test
-    void testStartTheGameTwoTimes() throws RulesViolationException {
+    void testStartTheGameTwoTimes() {
         Game game = new Game();
         game.addPlayer(new Player("François"));
         game.addPlayer(new Player("Louise"));
@@ -95,7 +95,7 @@ public class GameTests {
     }
 
     @Test
-    void testAddPlayerWithSameName() throws RulesViolationException {
+    void testAddPlayerWithSameName() {
         Game game = new Game();
         game.addPlayer(new Player("François"));
         try {
@@ -107,7 +107,7 @@ public class GameTests {
     }
 
     @Test
-    void testHandOutTheWonderBoards() throws RulesViolationException {
+    void testHandOutTheWonderBoards() {
         Game game = new Game();
         Player francois = new Player("François");
         Player louise = new Player("Louise");
