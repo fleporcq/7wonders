@@ -1,5 +1,8 @@
 package model.wonderboards;
 
+import model.resources.Resource;
+import model.resources.ResourceType;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,7 +12,7 @@ public class WonderBoard {
 
     private Side side;
 
-    List<Step> steps = new ArrayList<>();
+    List<Resource> resources = new ArrayList<>();
 
     public WonderBoard(City city, Side side) {
         if (city == null)
@@ -28,12 +31,25 @@ public class WonderBoard {
         return side;
     }
 
-    public void addStep(Step step) {
-        steps.add(step);
+    public void addResource(Resource resource) {
+        this.resources.add(resource);
     }
 
     @Override
     public String toString() {
         return city + " " + side;
+    }
+
+    public boolean has(ResourceType type) {
+        return has(type, 1);
+    }
+
+    public boolean has(ResourceType type, int count) {
+        int total = 0;
+        for (Resource resource : resources) {
+            if (resource.is(type))
+                total++;
+        }
+        return total >= count;
     }
 }
