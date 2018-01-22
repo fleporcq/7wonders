@@ -46,11 +46,22 @@ public class Game {
     }
 
     public void handOutWonderBoards(List<WonderBoard> wonderBoards) {
-        if(wonderBoards.size() < players.size())
+        if (!started)
+            throw new IllegalStateException("The game is not yet started");
+        if (wonderBoards.size() < players.size())
             throw new IllegalArgumentException("They are not enough wonder boards");
         Collections.shuffle(wonderBoards);
-        for (Player player:players){
+        for (Player player : players) {
             player.setWonderBoard(wonderBoards.remove(0));
+        }
+    }
+
+    public void handOutCoins(int amount) {
+        if (!started)
+            throw new IllegalStateException("The game is not yet started");
+        for (Player player : players) {
+            WonderBoard wonderBoard = player.getWonderBoard();
+            wonderBoard.addCoins(amount);
         }
     }
 }

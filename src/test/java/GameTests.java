@@ -107,7 +107,7 @@ public class GameTests {
     }
 
     @Test
-    void testHandOutTheWonderBoards() {
+    void testHandOutWonderBoards() {
         Game game = new Game();
         Player francois = new Player("François");
         Player louise = new Player("Louise");
@@ -124,5 +124,25 @@ public class GameTests {
         assertNotNull(louise.getWonderBoard());
         assertNotNull(antoine.getWonderBoard());
         assertEquals(4, wonderBoards.size());
+    }
+
+    @Test
+    void testHandOutCoins(){
+        Game game = new Game();
+        Player francois = new Player("François");
+        Player louise = new Player("Louise");
+        Player antoine = new Player("Antoine");
+        game.addPlayer(francois);
+        game.addPlayer(louise);
+        game.addPlayer(antoine);
+        game.start();
+
+        WonderBoardFactory wonderBoardFactory = new WonderBoardFactory();
+        List<WonderBoard> wonderBoards = wonderBoardFactory.shuffle();
+        game.handOutWonderBoards(wonderBoards);
+        game.handOutCoins(3);
+        assertEquals(3, francois.getWonderBoard().getCoins());
+        assertEquals(3, louise.getWonderBoard().getCoins());
+        assertEquals(3, antoine.getWonderBoard().getCoins());
     }
 }
