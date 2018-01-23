@@ -8,8 +8,8 @@ import java.util.List;
 
 public class Game {
 
-    private static final int PLAYER_MIN = 3;
-    private static final int PLAYER_MAX = 7;
+    public static final int PLAYER_MIN = 3;
+    public static final int PLAYER_MAX = 7;
 
     private List<Player> players = new ArrayList<>();
 
