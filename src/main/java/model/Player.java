@@ -11,10 +11,18 @@ public class Player {
 
     private Hand hand = new Hand();
 
+    private Game game;
+
     public Player(String name) {
         if (name == null || name.trim().equals(""))
             throw new IllegalArgumentException("The player's name cannot be null or empty");
         this.name = name;
+    }
+
+    void setGame(Game game) {
+        if (this.game != null)
+            throw new IllegalStateException("The game is already setted");
+        this.game = game;
     }
 
     public String getName() {
@@ -44,7 +52,7 @@ public class Player {
 
     public void cancelChoice() {
         Card choice = hand.getChoice();
-        if(choice == null)
+        if (choice == null)
             throw new IllegalStateException("You have not yet chosen a card");
         hand.add(hand.getChoice());
         hand.setChoice(null);

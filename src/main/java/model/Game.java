@@ -24,6 +24,7 @@ public class Game {
             throw new RulesViolationException("The maximum number of players is " + PLAYER_MAX);
         if (getPlayer(player.getName()) != null)
             throw new IllegalArgumentException("A player with the same name is already in the game");
+        player.setGame(this);
         players.add(player);
     }
 
