@@ -36,8 +36,18 @@ public class Player {
     public void choose(Card card) {
         if (!hand.contains(card))
             throw new IllegalArgumentException("This card is not part of your hand");
+        if (hand.getChoice() != null)
+            throw new IllegalStateException("You have already chosen a card");
         hand.remove(card);
         hand.setChoice(card);
+    }
+
+    public void cancelChoice() {
+        Card choice = hand.getChoice();
+        if(choice == null)
+            throw new IllegalStateException("You have not yet chosen a card");
+        hand.add(hand.getChoice());
+        hand.setChoice(null);
     }
 
     public boolean hasChosenACard() {
@@ -45,7 +55,7 @@ public class Player {
     }
 
     public void build(Card card) {
-        if(wonderBoard == null)
+        if (wonderBoard == null)
             throw new IllegalStateException("The wonder boards have not yet hand out");
         hand.setChoice(null);
         wonderBoard.build(card);
