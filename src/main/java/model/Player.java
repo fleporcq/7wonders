@@ -44,4 +44,10 @@ public class Player {
         return hand.getChoice() != null;
     }
 
+    public void build(Card card) {
+        if(wonderBoard == null)
+            throw new IllegalStateException("The wonder boards have not yet hand out");
+        hand.setChoice(null);
+        wonderBoard.build(card);
+    }
 }

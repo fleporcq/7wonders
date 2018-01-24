@@ -1,6 +1,10 @@
 package model.cards;
 
 import model.Age;
+import model.bonus.Bonus;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class Card implements Cloneable {
 
@@ -11,6 +15,8 @@ public class Card implements Cloneable {
     private String name;
 
     private int minPlayerCount;
+
+    private List<Bonus> bonus = new ArrayList<>();
 
     public Card(Age age, CardType type, String name, int minPlayerCount) {
         this.age = age;
@@ -41,5 +47,9 @@ public class Card implements Cloneable {
     @Override
     public String toString() {
         return name;
+    }
+
+    public List<Bonus> getBonus() {
+        return bonus;
     }
 }

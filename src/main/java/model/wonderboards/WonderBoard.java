@@ -1,5 +1,7 @@
 package model.wonderboards;
 
+import model.bonus.Bonus;
+import model.cards.Card;
 import model.resources.Resource;
 import model.resources.ResourceType;
 
@@ -12,9 +14,11 @@ public class WonderBoard {
 
     private Side side;
 
-    List<Resource> resources = new ArrayList<>();
+    private List<Resource> resources = new ArrayList<>();
 
-    int coins;
+    private int coins;
+
+    private List<Card> builtCards = new ArrayList<>();
 
     public WonderBoard(City city, Side side) {
         if (city == null)
@@ -31,6 +35,10 @@ public class WonderBoard {
 
     public Side getSide() {
         return side;
+    }
+
+    public List<Card> getBuiltCards() {
+        return builtCards;
     }
 
     public void addResource(Resource resource) {
@@ -65,5 +73,12 @@ public class WonderBoard {
     @Override
     public String toString() {
         return city + " " + side;
+    }
+
+    public void build(Card card) {
+        builtCards.add(card);
+        for (Bonus bonus : card.getBonus()) {
+            bonus.apply(this);
+        }
     }
 }
