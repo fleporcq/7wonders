@@ -1,8 +1,7 @@
 package model;
 
+import model.cards.Card;
 import model.wonderboards.WonderBoard;
-
-import java.util.List;
 
 public class Player {
 
@@ -33,4 +32,16 @@ public class Player {
     public Hand getHand() {
         return hand;
     }
+
+    public void choose(Card card) {
+        if (!hand.contains(card))
+            throw new IllegalArgumentException("This card is not part of your hand");
+        hand.remove(card);
+        hand.setChoice(card);
+    }
+
+    public boolean hasChosenACard() {
+        return hand.getChoice() != null;
+    }
+
 }
