@@ -66,9 +66,10 @@ public class PlayerTests {
         game.handOutWonderBoards(wonderBoards);
         Deck deck = new DeckAgeI(3);
         game.handOutCards(deck);
-        Card card = francois.getHand().getCards().get(0);
-        francois.choose(card);
-        francois.build(card);
+        francois.choose(francois.getHand().getCards().get(0));
+        louise.choose(louise.getHand().getCards().get(0));
+        antoine.choose(antoine.getHand().getCards().get(0));
+        francois.build();
         assertFalse(francois.hasChosenACard());
         assertEquals(1, francois.getWonderBoard().getBuiltCards().size());
     }

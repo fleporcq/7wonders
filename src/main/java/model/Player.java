@@ -54,6 +54,8 @@ public class Player {
         Card choice = hand.getChoice();
         if (choice == null)
             throw new IllegalStateException("You have not yet chosen a card");
+        if (game.allPlayersHaveChoosenACard())
+            throw new RulesViolationException("You cannot cancel your choice because all players have chosen a card");
         hand.add(hand.getChoice());
         hand.setChoice(null);
     }
@@ -62,9 +64,12 @@ public class Player {
         return hand.getChoice() != null;
     }
 
-    public void build(Card card) {
+    public void build() {
         if (wonderBoard == null)
             throw new IllegalStateException("The wonder boards have not yet hand out");
+        if (!game.allPlayersHaveChoosenACard())
+            throw new RulesViolationException("All players have not yet chosen a card");
+        Card card = hand.getChoice();
         hand.setChoice(null);
         wonderBoard.build(card);
     }
