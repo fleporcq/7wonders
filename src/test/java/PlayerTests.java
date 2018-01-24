@@ -73,4 +73,24 @@ public class PlayerTests {
         assertFalse(francois.hasChosenACard());
         assertEquals(1, francois.getWonderBoard().getBuiltCards().size());
     }
+
+    @Test
+    void testAPlayerCancelHisChoice(){
+        Game game = new Game();
+        Player francois = new Player("François");
+        Player louise = new Player("Louise");
+        Player antoine = new Player("Antoine");
+        game.addPlayer(francois);
+        game.addPlayer(louise);
+        game.addPlayer(antoine);
+        game.start();
+        WonderBoardFactory wonderBoardFactory = new WonderBoardFactory();
+        List<WonderBoard> wonderBoards = wonderBoardFactory.getRandomWonderBoards();
+        game.handOutWonderBoards(wonderBoards);
+        Deck deck = new DeckAgeI(3);
+        game.handOutCards(deck);
+        francois.choose(francois.getHand().getCards().get(0));
+        louise.choose(louise.getHand().getCards().get(0));
+        francois.cancelChoice();
+    }
 }
