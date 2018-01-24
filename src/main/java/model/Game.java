@@ -1,5 +1,7 @@
 package model;
 
+import model.cards.Card;
+import model.cards.Deck;
 import model.wonderboards.WonderBoard;
 
 import java.util.ArrayList;
@@ -64,4 +66,19 @@ public class Game {
             wonderBoard.addCoins(amount);
         }
     }
+
+    public void handOutCards(Deck deck) {
+        Player player = null;
+        for (Card card : deck.getCards()) {
+            player = nextPlayer(player);
+            player.getHand().add(card);
+        }
+    }
+
+    private Player nextPlayer(Player current) {
+        int index = current != null ? players.indexOf(current) : 0;
+        int next = index < players.size() - 1 ? index + 1 : 0;
+        return players.get(next);
+    }
+
 }

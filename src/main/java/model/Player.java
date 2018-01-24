@@ -2,11 +2,15 @@ package model;
 
 import model.wonderboards.WonderBoard;
 
+import java.util.List;
+
 public class Player {
 
     private String name;
 
     private WonderBoard wonderBoard;
+
+    private Hand hand = new Hand();
 
     public Player(String name) {
         if (name == null || name.trim().equals(""))
@@ -24,5 +28,9 @@ public class Player {
 
     public WonderBoard getWonderBoard() {
         return wonderBoard;
+    }
+
+    public Hand getHand() {
+        return hand;
     }
 }

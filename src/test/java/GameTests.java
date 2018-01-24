@@ -1,6 +1,8 @@
 import model.Game;
 import model.Player;
 import model.RulesViolationException;
+import model.cards.Deck;
+import model.cards.DeckAgeI;
 import model.wonderboards.WonderBoard;
 import model.wonderboards.WonderBoardFactory;
 import org.junit.jupiter.api.Test;
@@ -127,7 +129,7 @@ public class GameTests {
     }
 
     @Test
-    void testHandOutCoins(){
+    void testHandOutCoins() {
         Game game = new Game();
         Player francois = new Player("François");
         Player louise = new Player("Louise");
@@ -144,5 +146,22 @@ public class GameTests {
         assertEquals(3, francois.getWonderBoard().getCoins());
         assertEquals(3, louise.getWonderBoard().getCoins());
         assertEquals(3, antoine.getWonderBoard().getCoins());
+    }
+
+    @Test
+    void testHandOutCards() {
+        Game game = new Game();
+        Player francois = new Player("François");
+        Player louise = new Player("Louise");
+        Player antoine = new Player("Antoine");
+        game.addPlayer(francois);
+        game.addPlayer(louise);
+        game.addPlayer(antoine);
+        game.start();
+        Deck deck = new DeckAgeI(3);
+        game.handOutCards(deck);
+        assertEquals(16, francois.getHand().getCards().size());
+        assertEquals(16, louise.getHand().getCards().size());
+        assertEquals(16, antoine.getHand().getCards().size());
     }
 }
