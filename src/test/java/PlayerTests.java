@@ -62,7 +62,7 @@ public class PlayerTests {
         game.addPlayer(antoine);
         game.start();
         WonderBoardFactory wonderBoardFactory = new WonderBoardFactory();
-        List<WonderBoard> wonderBoards = wonderBoardFactory.shuffle();
+        List<WonderBoard> wonderBoards = wonderBoardFactory.getRandomWonderBoards();
         game.handOutWonderBoards(wonderBoards);
         Deck deck = new DeckAgeI(3);
         game.handOutCards(deck);

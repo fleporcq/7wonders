@@ -120,7 +120,7 @@ public class GameTests {
         game.start();
 
         WonderBoardFactory wonderBoardFactory = new WonderBoardFactory();
-        List<WonderBoard> wonderBoards = wonderBoardFactory.shuffle();
+        List<WonderBoard> wonderBoards = wonderBoardFactory.getRandomWonderBoards();
         game.handOutWonderBoards(wonderBoards);
         assertNotNull(francois.getWonderBoard());
         assertNotNull(louise.getWonderBoard());
@@ -140,7 +140,7 @@ public class GameTests {
         game.start();
 
         WonderBoardFactory wonderBoardFactory = new WonderBoardFactory();
-        List<WonderBoard> wonderBoards = wonderBoardFactory.shuffle();
+        List<WonderBoard> wonderBoards = wonderBoardFactory.getRandomWonderBoards();
         game.handOutWonderBoards(wonderBoards);
         game.handOutCoins(3);
         assertEquals(3, francois.getWonderBoard().getCoins());

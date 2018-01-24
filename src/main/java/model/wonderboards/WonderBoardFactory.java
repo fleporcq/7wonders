@@ -9,7 +9,7 @@ import java.util.Random;
 
 public class WonderBoardFactory {
 
-    public List<WonderBoard> shuffle() {
+    public List<WonderBoard> getRandomWonderBoards() {
         List<WonderBoard> wonderBoards = new ArrayList<>();
         Random random = new Random();
         for (City city : City.values()) {
