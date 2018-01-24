@@ -80,6 +80,15 @@ public class Game {
         return players.get(next);
     }
 
+    public boolean allPlayersHaveChoosenACard() {
+        errorIfNotStarted();
+        for (Player player : players) {
+            if (!player.hasChosenACard())
+                return false;
+        }
+        return true;
+    }
+
     private void errorIfNotStarted() {
         if (!started)
             throw new IllegalStateException("The game is not yet started");

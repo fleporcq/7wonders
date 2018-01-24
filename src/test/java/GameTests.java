@@ -164,4 +164,24 @@ public class GameTests {
         assertEquals(16, louise.getHand().getCards().size());
         assertEquals(16, antoine.getHand().getCards().size());
     }
+
+    @Test
+    void testAllPlayerHaveChosenACard() {
+        Game game = new Game();
+        Player francois = new Player("François");
+        Player louise = new Player("Louise");
+        Player antoine = new Player("Antoine");
+        game.addPlayer(francois);
+        game.addPlayer(louise);
+        game.addPlayer(antoine);
+        game.start();
+        Deck deck = new DeckAgeI(3);
+        game.handOutCards(deck);
+        francois.choose(francois.getHand().getCards().get(0));
+        assertFalse(game.allPlayersHaveChoosenACard());
+        louise.choose(louise.getHand().getCards().get(0));
+        assertFalse(game.allPlayersHaveChoosenACard());
+        antoine.choose(antoine.getHand().getCards().get(0));
+        assertTrue(game.allPlayersHaveChoosenACard());
+    }
 }
