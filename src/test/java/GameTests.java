@@ -160,9 +160,9 @@ public class GameTests {
         game.start();
         Deck deck = new DeckAgeI(3);
         game.handOutCards(deck);
-        assertEquals(16, francois.getHand().getCards().size());
-        assertEquals(16, louise.getHand().getCards().size());
-        assertEquals(16, antoine.getHand().getCards().size());
+        assertEquals(7, francois.getHand().getCards().size());
+        assertEquals(7, louise.getHand().getCards().size());
+        assertEquals(7, antoine.getHand().getCards().size());
     }
 
     @Test

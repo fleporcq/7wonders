@@ -13,14 +13,14 @@ public class DeckTests {
     void testCreateDeckAgeIFor3Players() {
         Deck deck = new DeckAgeI(3);
         List<Card> cards = deck.getCards();
-        assertEquals(48, cards.size());
+        assertEquals(21, cards.size());
     }
 
     @Test
     void testCreateDeckAgeIFor7Players() {
         Deck deck = new DeckAgeI(7);
         List<Card> cards = deck.getCards();
-        assertEquals(52, cards.size());
+        assertEquals(49, cards.size());
     }
 
 }

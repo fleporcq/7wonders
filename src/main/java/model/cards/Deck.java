@@ -29,23 +29,19 @@ public abstract class Deck {
         }
     }
 
-    protected Card createCard(CardType type, String name, int minPlayerCount) {
-        Card card = new Card(age, type, name, minPlayerCount);
-        return card;
+    protected Card createCard(CardType type, String name) {
+        return new Card(age, type, name);
     }
 
-    protected void add(Card card) {
-        add(card, 1);
-    }
-
-    protected void add(Card card, int quantity) {
+    protected void add(Card card, int... minPlayerCounts) {
         if (card.getAge() != age)
             throw new IllegalArgumentException("This card is not of the age " + age);
-        if (quantity < 1)
-            throw new IllegalArgumentException("The cards quantity must be greater than 0");
-        allCards.add(card);
-        for (int i = 1; i < quantity; i++) {
-            allCards.add(card.clone());
+        if (minPlayerCounts.length < 1)
+            throw new IllegalArgumentException("You must add at least one card");
+        for (int i = 0; i < minPlayerCounts.length; i++) {
+            Card clone = card.clone();
+            clone.setMinPlayerCount(minPlayerCounts[i]);
+            allCards.add(clone);
         }
     }
 

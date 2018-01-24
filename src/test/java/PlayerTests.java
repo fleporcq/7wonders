@@ -45,10 +45,10 @@ public class PlayerTests {
         Deck deck = new DeckAgeI(3);
         game.handOutCards(deck);
         Card card = francois.getHand().getCards().get(0);
-        assertEquals(16, francois.getHand().getCards().size());
+        assertEquals(7, francois.getHand().getCards().size());
         francois.choose(card);
         assertTrue(francois.hasChosenACard());
-        assertEquals(15, francois.getHand().getCards().size());
+        assertEquals(6, francois.getHand().getCards().size());
     }
 
     @Test

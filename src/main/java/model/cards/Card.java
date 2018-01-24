@@ -18,10 +18,13 @@ public class Card implements Cloneable {
 
     private List<Bonus> bonus = new ArrayList<>();
 
-    public Card(Age age, CardType type, String name, int minPlayerCount) {
+    public Card(Age age, CardType type, String name) {
         this.age = age;
         this.type = type;
         this.name = name;
+    }
+
+    public void setMinPlayerCount(int minPlayerCount) {
         this.minPlayerCount = minPlayerCount;
     }
 
