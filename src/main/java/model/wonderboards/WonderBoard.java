@@ -1,6 +1,8 @@
 package model.wonderboards;
 
-import model.bonus.Bonus;
+import model.Bonus;
+import model.Cost;
+import model.RulesViolationException;
 import model.cards.Card;
 import model.resources.Resource;
 import model.resources.ResourceType;
@@ -46,10 +48,14 @@ public class WonderBoard {
     }
 
     public void addCoins(int amount) {
+        if (amount < 1)
+            throw new IllegalArgumentException("The amount must be at least 1");
         coins += amount;
     }
 
     public void removeCoins(int amount) {
+        if (amount < 1)
+            throw new IllegalArgumentException("The amount must be at least 1");
         coins -= amount;
     }
 
@@ -76,9 +82,23 @@ public class WonderBoard {
     }
 
     public void build(Card card) {
+        List<Cost> costs = card.getCosts();
+
+        if (!canPay(costs))
+            throw new RulesViolationException("You have not enough resources or coins to pay this card");
+
         builtCards.add(card);
-        for (Bonus bonus : card.getBonus()) {
+
+        for (Cost cost : costs) {
+            cost.pay(this);
+        }
+
+        for (Bonus bonus : card.getBonuses()) {
             bonus.apply(this);
         }
+    }
+
+    private boolean canPay(List<Cost> costs) {
+        return true;
     }
 }

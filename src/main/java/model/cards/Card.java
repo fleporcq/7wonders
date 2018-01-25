@@ -1,7 +1,8 @@
 package model.cards;
 
 import model.Age;
-import model.bonus.Bonus;
+import model.Bonus;
+import model.Cost;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,7 +17,9 @@ public class Card implements Cloneable {
 
     private int minPlayerCount;
 
-    private List<Bonus> bonus = new ArrayList<>();
+    private List<Bonus> bonuses = new ArrayList<>();
+
+    private List<Cost> costs = new ArrayList<>();
 
     public Card(Age age, CardType type, String name) {
         this.age = age;
@@ -26,6 +29,26 @@ public class Card implements Cloneable {
 
     public CardType getType() {
         return type;
+    }
+
+    public void addBonuses(Bonus... bonuses) {
+        for (int i = 0; i < bonuses.length; i++) {
+            this.bonuses.add(bonuses[i]);
+        }
+    }
+
+    public List<Bonus> getBonuses() {
+        return bonuses;
+    }
+
+    public void addCosts(Cost... costs) {
+        for (int i = 0; i < costs.length; i++) {
+            this.costs.add(costs[i]);
+        }
+    }
+
+    public List<Cost> getCosts() {
+        return costs;
     }
 
     public void setMinPlayerCount(int minPlayerCount) {
@@ -56,7 +79,5 @@ public class Card implements Cloneable {
         return name;
     }
 
-    public List<Bonus> getBonus() {
-        return bonus;
-    }
+
 }

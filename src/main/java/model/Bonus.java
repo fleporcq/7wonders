@@ -1,4 +1,4 @@
-package model.bonus;
+package model;
 
 
 import model.wonderboards.WonderBoard;

@@ -1,9 +1,10 @@
 package model.resources;
 
-import model.bonus.Bonus;
+import model.Bonus;
+import model.Cost;
 import model.wonderboards.WonderBoard;
 
-public class Resource implements Bonus {
+public class Resource implements Bonus, Cost {
 
     private ResourceType type;
 
@@ -20,5 +21,10 @@ public class Resource implements Bonus {
 
     public boolean is(ResourceType type) {
         return this.type == type;
+    }
+
+    @Override
+    public void pay(WonderBoard wonderBoard) {
+
     }
 }
