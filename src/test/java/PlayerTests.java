@@ -1,3 +1,4 @@
+import data.decks.StaticAgeIDeckFor3Players;
 import model.Game;
 import model.Player;
 import model.cards.Card;
@@ -42,13 +43,12 @@ public class PlayerTests {
         game.addPlayer(louise);
         game.addPlayer(antoine);
         game.start();
-        Deck deck = new DeckAgeI(3);
+        Deck deck = new StaticAgeIDeckFor3Players();
         game.handOutCards(deck);
-        Card card = francois.getHand().getCards().get(0);
-        assertEquals(7, francois.getHand().getCards().size());
-        francois.choose(card);
+        assertEquals(1, francois.getHand().getCards().size());
+        francois.choose(francois.getHand().get("lumber yard"));
         assertTrue(francois.hasChosenACard());
-        assertEquals(6, francois.getHand().getCards().size());
+        assertEquals(0, francois.getHand().getCards().size());
     }
 
     @Test
@@ -64,11 +64,11 @@ public class PlayerTests {
         WonderBoardFactory wonderBoardFactory = new WonderBoardFactory();
         List<WonderBoard> wonderBoards = wonderBoardFactory.getRandomWonderBoards();
         game.handOutWonderBoards(wonderBoards);
-        Deck deck = new DeckAgeI(3);
+        Deck deck = new StaticAgeIDeckFor3Players();
         game.handOutCards(deck);
-        francois.choose(francois.getHand().getCards().get(0));
-        louise.choose(louise.getHand().getCards().get(0));
-        antoine.choose(antoine.getHand().getCards().get(0));
+        francois.choose(francois.getHand().get("lumber yard"));
+        louise.choose(louise.getHand().get("stone pit"));
+        antoine.choose(antoine.getHand().get("clay pool"));
         francois.build();
         assertFalse(francois.hasChosenACard());
         assertEquals(1, francois.getWonderBoard().getBuiltCards().size());
@@ -87,10 +87,10 @@ public class PlayerTests {
         WonderBoardFactory wonderBoardFactory = new WonderBoardFactory();
         List<WonderBoard> wonderBoards = wonderBoardFactory.getRandomWonderBoards();
         game.handOutWonderBoards(wonderBoards);
-        Deck deck = new DeckAgeI(3);
+        Deck deck = new StaticAgeIDeckFor3Players();
         game.handOutCards(deck);
-        francois.choose(francois.getHand().getCards().get(0));
-        louise.choose(louise.getHand().getCards().get(0));
+        francois.choose(francois.getHand().get("lumber yard"));
+        louise.choose(louise.getHand().get("stone pit"));
         francois.cancelChoice();
     }
 }

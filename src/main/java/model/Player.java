@@ -42,10 +42,10 @@ public class Player {
     }
 
     public void choose(Card card) {
-        if (!hand.contains(card))
-            throw new IllegalArgumentException("This card is not part of your hand");
         if (hand.getChoice() != null)
             throw new IllegalStateException("You have already chosen a card");
+        if (!hand.getCards().contains(card))
+            throw new IllegalArgumentException("This card is not part of your hand");
         hand.remove(card);
         hand.setChoice(card);
     }

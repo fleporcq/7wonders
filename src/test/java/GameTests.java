@@ -1,3 +1,4 @@
+import data.decks.StaticAgeIDeckFor3Players;
 import model.Game;
 import model.Player;
 import model.RulesViolationException;
@@ -175,13 +176,11 @@ public class GameTests {
         game.addPlayer(louise);
         game.addPlayer(antoine);
         game.start();
-        Deck deck = new DeckAgeI(3);
+        Deck deck = new StaticAgeIDeckFor3Players();
         game.handOutCards(deck);
-        francois.choose(francois.getHand().getCards().get(0));
-        assertFalse(game.allPlayersHaveChoosenACard());
-        louise.choose(louise.getHand().getCards().get(0));
-        assertFalse(game.allPlayersHaveChoosenACard());
-        antoine.choose(antoine.getHand().getCards().get(0));
+        francois.choose(francois.getHand().get("lumber yard"));
+        louise.choose(louise.getHand().get("stone pit"));
+        antoine.choose(antoine.getHand().get("clay pool"));
         assertTrue(game.allPlayersHaveChoosenACard());
     }
 }

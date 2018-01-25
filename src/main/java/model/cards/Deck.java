@@ -19,7 +19,6 @@ public abstract class Deck {
         this.age = age;
         build();
         selectCards(playerCount);
-        shuffle();
     }
 
     private void selectCards(int playerCount) {
@@ -47,7 +46,7 @@ public abstract class Deck {
 
     protected abstract void build();
 
-    private void shuffle() {
+    public void shuffle() {
         Collections.shuffle(selectedCards);
     }
 

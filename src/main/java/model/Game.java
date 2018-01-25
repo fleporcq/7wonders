@@ -76,8 +76,12 @@ public class Game {
     }
 
     private Player nextPlayer(Player current) {
-        int index = current != null ? players.indexOf(current) : 0;
-        int next = index < players.size() - 1 ? index + 1 : 0;
+        Integer index = current == null ? null : players.indexOf(current);
+        int next;
+        if (index == null)
+            next = 0;
+        else
+            next = index < players.size() - 1 ? index + 1 : 0;
         return players.get(next);
     }
 

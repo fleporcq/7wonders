@@ -31,6 +31,10 @@ public class Card implements Cloneable {
         return type;
     }
 
+    public String getName() {
+        return name;
+    }
+
     public void addBonuses(Bonus... bonuses) {
         for (int i = 0; i < bonuses.length; i++) {
             this.bonuses.add(bonuses[i]);
@@ -78,6 +82,4 @@ public class Card implements Cloneable {
     public String toString() {
         return name;
     }
-
-
 }

@@ -34,4 +34,8 @@ public class Hand {
     void remove(Card card) {
         cards.remove(card);
     }
+
+    public Card get(String name){
+        return cards.stream().filter(c -> c.getName().equals(name)).findFirst().orElse(null);
+    }
 }
