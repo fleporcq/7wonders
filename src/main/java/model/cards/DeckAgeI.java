@@ -9,7 +9,6 @@ import static model.cards.CardType.*;
 
 public class DeckAgeI extends Deck {
 
-
     public DeckAgeI(int playerCount) {
         super(Age.I, playerCount);
     }
