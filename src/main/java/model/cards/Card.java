@@ -24,6 +24,10 @@ public class Card implements Cloneable {
         this.name = name;
     }
 
+    public CardType getType() {
+        return type;
+    }
+
     public void setMinPlayerCount(int minPlayerCount) {
         this.minPlayerCount = minPlayerCount;
     }
