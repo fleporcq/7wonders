@@ -1,8 +1,6 @@
-import data.decks.StaticAgeIDeckFor3Players;
 import model.Game;
 import model.Player;
 import model.RulesViolationException;
-import model.cards.Deck;
 import model.cards.DeckAgeI;
 import model.wonderboards.WonderBoard;
 import model.wonderboards.WonderBoardFactory;
@@ -159,8 +157,7 @@ public class GameTests {
         game.addPlayer(louise);
         game.addPlayer(antoine);
         game.start();
-        Deck deck = new DeckAgeI(3);
-        game.handOutCards(deck);
+        game.handOutCards(new DeckAgeI(3));
         assertEquals(7, francois.getHand().getCards().size());
         assertEquals(7, louise.getHand().getCards().size());
         assertEquals(7, antoine.getHand().getCards().size());
@@ -176,8 +173,7 @@ public class GameTests {
         game.addPlayer(louise);
         game.addPlayer(antoine);
         game.start();
-        Deck deck = new StaticAgeIDeckFor3Players();
-        game.handOutCards(deck);
+        game.handOutCards(new DeckAgeI(3));
         francois.choose(francois.getHand().get("lumber yard"));
         louise.choose(louise.getHand().get("stone pit"));
         antoine.choose(antoine.getHand().get("clay pool"));

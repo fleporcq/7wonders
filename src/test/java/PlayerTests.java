@@ -1,18 +1,10 @@
-import data.decks.StaticAgeIDeckFor3Players;
 import model.Game;
 import model.Player;
-import model.cards.Card;
-import model.cards.Deck;
-import model.cards.DeckAgeI;
-import model.wonderboards.WonderBoard;
-import model.wonderboards.WonderBoardFactory;
 import org.junit.jupiter.api.Test;
-
-import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class PlayerTests {
+public class PlayerTests implements DataTestsFactory {
 
     @Test
     void testCreatePlayerWithEmptyName() {
@@ -35,37 +27,44 @@ public class PlayerTests {
 
     @Test
     void testAPlayerChoosesACard() {
-        Game game = new Game();
-        Player francois = new Player("François");
-        Player louise = new Player("Louise");
-        Player antoine = new Player("Antoine");
-        game.addPlayer(francois);
-        game.addPlayer(louise);
-        game.addPlayer(antoine);
-        game.start();
-        Deck deck = new StaticAgeIDeckFor3Players();
-        game.handOutCards(deck);
-        assertEquals(1, francois.getHand().getCards().size());
+        Game game = startATestGame("François", "Louise", "Antoine");
+        Player francois = game.getPlayer("François");
+        assertEquals(7, francois.getHand().getCards().size());
         francois.choose(francois.getHand().get("lumber yard"));
         assertTrue(francois.hasChosenACard());
-        assertEquals(0, francois.getHand().getCards().size());
+        assertEquals(6, francois.getHand().getCards().size());
     }
 
     @Test
-    void testAPlayerBuildsACard() {
-        Game game = new Game();
-        Player francois = new Player("François");
-        Player louise = new Player("Louise");
-        Player antoine = new Player("Antoine");
-        game.addPlayer(francois);
-        game.addPlayer(louise);
-        game.addPlayer(antoine);
-        game.start();
-        WonderBoardFactory wonderBoardFactory = new WonderBoardFactory();
-        List<WonderBoard> wonderBoards = wonderBoardFactory.getRandomWonderBoards();
-        game.handOutWonderBoards(wonderBoards);
-        Deck deck = new StaticAgeIDeckFor3Players();
-        game.handOutCards(deck);
+    void testAPlayerCancelsHisChoice() {
+        Game game = startATestGame("François", "Louise", "Antoine");
+        Player francois = game.getPlayer("François");
+        Player louise = game.getPlayer("Louise");
+        francois.choose(francois.getHand().get("lumber yard"));
+        louise.choose(louise.getHand().get("stone pit"));
+        francois.cancelChoice();
+    }
+
+    @Test
+    void testAPlayerSellsAcard() {
+        Game game = startATestGame("François", "Louise", "Antoine");
+        Player francois = game.getPlayer("François");
+        Player louise = game.getPlayer("Louise");
+        Player antoine = game.getPlayer("Antoine");
+        francois.choose(francois.getHand().get("lumber yard"));
+        louise.choose(louise.getHand().get("stone pit"));
+        antoine.choose(antoine.getHand().get("clay pool"));
+        assertEquals(3, francois.getWonderBoard().getCoins());
+        francois.sell();
+        assertEquals(6, francois.getWonderBoard().getCoins());
+    }
+
+    @Test
+    void testAPlayerBuildsAFreeCard() {
+        Game game = startATestGame("François", "Louise", "Antoine");
+        Player francois = game.getPlayer("François");
+        Player louise = game.getPlayer("Louise");
+        Player antoine = game.getPlayer("Antoine");
         francois.choose(francois.getHand().get("lumber yard"));
         louise.choose(louise.getHand().get("stone pit"));
         antoine.choose(antoine.getHand().get("clay pool"));
@@ -74,47 +73,4 @@ public class PlayerTests {
         assertEquals(1, francois.getWonderBoard().getBuiltCards().size());
     }
 
-    @Test
-    void testAPlayerCancelsHisChoice(){
-        Game game = new Game();
-        Player francois = new Player("François");
-        Player louise = new Player("Louise");
-        Player antoine = new Player("Antoine");
-        game.addPlayer(francois);
-        game.addPlayer(louise);
-        game.addPlayer(antoine);
-        game.start();
-        WonderBoardFactory wonderBoardFactory = new WonderBoardFactory();
-        List<WonderBoard> wonderBoards = wonderBoardFactory.getRandomWonderBoards();
-        game.handOutWonderBoards(wonderBoards);
-        Deck deck = new StaticAgeIDeckFor3Players();
-        game.handOutCards(deck);
-        francois.choose(francois.getHand().get("lumber yard"));
-        louise.choose(louise.getHand().get("stone pit"));
-        francois.cancelChoice();
-    }
-
-    @Test
-    void testAPlayerSellsAcard(){
-        Game game = new Game();
-        Player francois = new Player("François");
-        Player louise = new Player("Louise");
-        Player antoine = new Player("Antoine");
-        game.addPlayer(francois);
-        game.addPlayer(louise);
-        game.addPlayer(antoine);
-        game.start();
-        WonderBoardFactory wonderBoardFactory = new WonderBoardFactory();
-        List<WonderBoard> wonderBoards = wonderBoardFactory.getRandomWonderBoards();
-        game.handOutWonderBoards(wonderBoards);
-        game.handOutCoins(3);
-        Deck deck = new StaticAgeIDeckFor3Players();
-        game.handOutCards(deck);
-        francois.choose(francois.getHand().get("lumber yard"));
-        louise.choose(louise.getHand().get("stone pit"));
-        antoine.choose(antoine.getHand().get("clay pool"));
-        assertEquals(3, francois.getWonderBoard().getCoins());
-        francois.sell();
-        assertEquals(6, francois.getWonderBoard().getCoins());
-    }
 }
