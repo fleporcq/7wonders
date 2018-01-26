@@ -88,42 +88,42 @@ public class DeckAgeIII extends Deck {
 
         Card workersGuild = createCard(GUILD, "workers guild");
         workersGuild.addCosts(new Resource(ORE), new Resource(ORE), new Resource(CLAY), new Resource(STONE), new Resource(WOOD));
-        add(workersGuild, 3);
+        addGuild(workersGuild);
 
         Card craftmensGuild = createCard(GUILD, "craftmens guild");
         craftmensGuild.addCosts(new Resource(ORE), new Resource(ORE), new Resource(STONE), new Resource(STONE));
-        add(craftmensGuild, 3);
+        addGuild(craftmensGuild);
 
         Card tradersGuild = createCard(GUILD, "traders guild");
         tradersGuild.addCosts(new Resource(LOOM), new Resource(PAPYRUS), new Resource(GLASS));
-        add(tradersGuild, 3);
+        addGuild(tradersGuild);
 
         Card philosophersGuild = createCard(GUILD, "philosophers guild");
         philosophersGuild.addCosts(new Resource(CLAY), new Resource(CLAY), new Resource(CLAY), new Resource(LOOM), new Resource(PAPYRUS));
-        add(philosophersGuild, 3);
+        addGuild(philosophersGuild);
 
         Card spyGuild = createCard(GUILD, "spy guild");
         spyGuild.addCosts(new Resource(CLAY), new Resource(CLAY), new Resource(CLAY), new Resource(GLASS));
-        add(spyGuild, 3);
+        addGuild(spyGuild);
 
         Card strategyGuild = createCard(GUILD, "strategy guild");
         strategyGuild.addCosts(new Resource(ORE), new Resource(ORE), new Resource(STONE), new Resource(LOOM));
-        add(strategyGuild, 3);
+        addGuild(strategyGuild);
 
         Card shipownersGuild = createCard(GUILD, "shipowners guild");
         shipownersGuild.addCosts(new Resource(WOOD), new Resource(WOOD), new Resource(WOOD), new Resource(PAPYRUS), new Resource(GLASS));
-        add(shipownersGuild, 3);
+        addGuild(shipownersGuild);
 
         Card scientitsGuild = createCard(GUILD, "scientits guild");
         scientitsGuild.addCosts(new Resource(WOOD), new Resource(WOOD), new Resource(ORE), new Resource(ORE), new Resource(PAPYRUS));
-        add(scientitsGuild, 3);
+        addGuild(scientitsGuild);
 
         Card magistratesGuild = createCard(GUILD, "magistrates guild");
         magistratesGuild.addCosts(new Resource(WOOD), new Resource(WOOD), new Resource(WOOD), new Resource(STONE), new Resource(LOOM));
-        add(magistratesGuild, 3);
+        addGuild(magistratesGuild);
 
         Card buildersGuild = createCard(GUILD, "builders guild");
         buildersGuild.addCosts(new Resource(STONE), new Resource(STONE), new Resource(CLAY), new Resource(CLAY), new Resource(GLASS));
-        add(buildersGuild, 3);
+        addGuild(buildersGuild);
     }
 }
