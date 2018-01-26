@@ -34,7 +34,7 @@ public class PlayerTests {
     }
 
     @Test
-    void testAPlayerChooseACard() {
+    void testAPlayerChoosesACard() {
         Game game = new Game();
         Player francois = new Player("François");
         Player louise = new Player("Louise");
@@ -52,7 +52,7 @@ public class PlayerTests {
     }
 
     @Test
-    void testAPlayerBuildACard() {
+    void testAPlayerBuildsACard() {
         Game game = new Game();
         Player francois = new Player("François");
         Player louise = new Player("Louise");
@@ -75,7 +75,7 @@ public class PlayerTests {
     }
 
     @Test
-    void testAPlayerCancelHisChoice(){
+    void testAPlayerCancelsHisChoice(){
         Game game = new Game();
         Player francois = new Player("François");
         Player louise = new Player("Louise");
@@ -92,5 +92,29 @@ public class PlayerTests {
         francois.choose(francois.getHand().get("lumber yard"));
         louise.choose(louise.getHand().get("stone pit"));
         francois.cancelChoice();
+    }
+
+    @Test
+    void testAPlayerSellsAcard(){
+        Game game = new Game();
+        Player francois = new Player("François");
+        Player louise = new Player("Louise");
+        Player antoine = new Player("Antoine");
+        game.addPlayer(francois);
+        game.addPlayer(louise);
+        game.addPlayer(antoine);
+        game.start();
+        WonderBoardFactory wonderBoardFactory = new WonderBoardFactory();
+        List<WonderBoard> wonderBoards = wonderBoardFactory.getRandomWonderBoards();
+        game.handOutWonderBoards(wonderBoards);
+        game.handOutCoins(3);
+        Deck deck = new StaticAgeIDeckFor3Players();
+        game.handOutCards(deck);
+        francois.choose(francois.getHand().get("lumber yard"));
+        louise.choose(louise.getHand().get("stone pit"));
+        antoine.choose(antoine.getHand().get("clay pool"));
+        assertEquals(3, francois.getWonderBoard().getCoins());
+        francois.sell();
+        assertEquals(6, francois.getWonderBoard().getCoins());
     }
 }

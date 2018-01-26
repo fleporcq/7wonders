@@ -42,35 +42,30 @@ public class Player {
     }
 
     public void choose(Card card) {
-        if (hand.getChoice() != null)
-            throw new IllegalStateException("You have already chosen a card");
-        if (!hand.getCards().contains(card))
-            throw new IllegalArgumentException("This card is not part of your hand");
-        hand.remove(card);
-        hand.setChoice(card);
+        hand.choose(card);
     }
 
     public void cancelChoice() {
-        Card choice = hand.getChoice();
-        if (choice == null)
-            throw new IllegalStateException("You have not yet chosen a card");
         if (game.allPlayersHaveChoosenACard())
             throw new RulesViolationException("You cannot cancel your choice because all players have chosen a card");
-        hand.add(hand.getChoice());
-        hand.setChoice(null);
+        hand.cancelChoice();
     }
 
     public boolean hasChosenACard() {
-        return hand.getChoice() != null;
+        return hand.hasChoice();
     }
 
     public void build() {
-        if (wonderBoard == null)
-            throw new IllegalStateException("The wonder boards have not yet hand out");
         if (!game.allPlayersHaveChoosenACard())
             throw new RulesViolationException("All players have not yet chosen a card");
-        Card card = hand.getChoice();
-        hand.setChoice(null);
+        Card card = hand.popChoice();
         wonderBoard.build(card);
+    }
+
+    public void sell() {
+        if (!game.allPlayersHaveChoosenACard())
+            throw new RulesViolationException("All players have not yet chosen a card");
+        Card card = hand.popChoice();
+        wonderBoard.addCoins(Game.CARD_DISCARDING_AMOUT);
     }
 }

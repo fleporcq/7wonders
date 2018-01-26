@@ -12,8 +12,11 @@ public class Game {
 
     public static final int PLAYER_MIN = 3;
     public static final int PLAYER_MAX = 7;
+    public static final int CARD_DISCARDING_AMOUT = 3;
 
     private List<Player> players = new ArrayList<>();
+
+    private Discarding discarding = new Discarding();
 
     private boolean started;
 
@@ -34,6 +37,10 @@ public class Game {
 
     public int getPlayerCount() {
         return players.size();
+    }
+
+    public void discard(Card card) {
+        discarding.add(card);
     }
 
     public void start() throws RulesViolationException {

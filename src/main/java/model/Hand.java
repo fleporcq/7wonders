@@ -19,23 +19,33 @@ public class Hand {
         cards.add(card);
     }
 
-    Card getChoice() {
-        return choice;
-    }
-
-    void setChoice(Card choice) {
-        this.choice = choice;
-    }
-
-    boolean contains(Card card) {
-        return cards.contains(card);
-    }
-
-    void remove(Card card) {
-        cards.remove(card);
-    }
-
-    public Card get(String name){
+    public Card get(String name) {
         return cards.stream().filter(c -> c.getName().equals(name)).findFirst().orElse(null);
+    }
+
+    public Card popChoice() {
+        Card card = choice;
+        choice = null;
+        return card;
+    }
+
+    public void cancelChoice() {
+        if (choice == null)
+            throw new IllegalStateException("You have not yet chosen a card");
+        cards.add(choice);
+        choice = null;
+    }
+
+    public void choose(Card card) {
+        if (choice != null)
+            throw new IllegalStateException("You have already chosen a card");
+        if (!cards.contains(card))
+            throw new IllegalArgumentException("This card is not part of your hand");
+        cards.remove(card);
+        choice = card;
+    }
+
+    public boolean hasChoice() {
+        return choice != null;
     }
 }
