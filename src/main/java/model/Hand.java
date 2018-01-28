@@ -20,7 +20,11 @@ public class Hand {
     }
 
     public Card get(String name) {
-        return cards.stream().filter(c -> c.getName().equals(name)).findFirst().orElse(null);
+        Card card = cards.stream().filter(c -> c.getName().equals(name)).findFirst().orElse(null);
+        if (card == null) {
+            throw new IllegalArgumentException("This card is not part of your hand");
+        }
+        return card;
     }
 
     public Card popChoice() {
