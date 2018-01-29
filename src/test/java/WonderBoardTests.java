@@ -13,14 +13,14 @@ public class WonderBoardTests {
     @Test
     void testGetBonus() {
         WonderBoardFactory wonderBoardFactory = new WonderBoardFactory();
-        WonderBoard wonderBoard = wonderBoardFactory.getWonderBoard(City.EPHESOS, Side.A);
+        WonderBoard wonderBoard = wonderBoardFactory.get(City.EPHESOS, Side.A);
         assertTrue(wonderBoard.has(Resource.PAPYRUS));
     }
 
     @Test
     void testAddCoins() {
         WonderBoardFactory wonderBoardFactory = new WonderBoardFactory();
-        WonderBoard wonderBoard = wonderBoardFactory.getWonderBoard(City.EPHESOS, Side.A);
+        WonderBoard wonderBoard = wonderBoardFactory.get(City.EPHESOS, Side.A);
         wonderBoard.addCoins(3);
         assertEquals(3, wonderBoard.getCoins());
     }
@@ -28,7 +28,7 @@ public class WonderBoardTests {
     @Test
     void testRemoveCoins() {
         WonderBoardFactory wonderBoardFactory = new WonderBoardFactory();
-        WonderBoard wonderBoard = wonderBoardFactory.getWonderBoard(City.EPHESOS, Side.A);
+        WonderBoard wonderBoard = wonderBoardFactory.get(City.EPHESOS, Side.A);
         wonderBoard.addCoins(3);
         wonderBoard.removeCoins(3);
         assertEquals(0, wonderBoard.getCoins());

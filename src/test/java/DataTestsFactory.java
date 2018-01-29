@@ -12,7 +12,7 @@ public interface DataTestsFactory {
         }
         game.start();
         WonderBoardFactory wonderBoardFactory = new WonderBoardFactory();
-        game.handOutWonderBoards(wonderBoardFactory.getRandomWonderBoards());
+        game.handOutWonderBoards(wonderBoardFactory.getRandoms());
         // We don't shuffle the deck for the tests
         game.handOutCards(new DeckAgeI(playerNames.length));
         game.handOutCoins(3);

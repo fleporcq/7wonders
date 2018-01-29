@@ -8,17 +8,17 @@ import java.util.Random;
 
 public class WonderBoardFactory {
 
-    public List<WonderBoard> getRandomWonderBoards() {
+    public List<WonderBoard> getRandoms() {
         List<WonderBoard> wonderBoards = new ArrayList<>();
         Random random = new Random();
         for (City city : City.values()) {
             Side side = random.nextBoolean() ? Side.A : Side.B;
-            wonderBoards.add(getWonderBoard(city, side));
+            wonderBoards.add(get(city, side));
         }
         return wonderBoards;
     }
 
-    public WonderBoard getWonderBoard(City city, Side side) {
+    public WonderBoard get(City city, Side side) {
         WonderBoard wonderBoard = new WonderBoard(city, side);
         Resource baseResource = null;
         switch (city) {
