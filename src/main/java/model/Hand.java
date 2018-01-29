@@ -4,6 +4,7 @@ import model.cards.Card;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Hand {
 
@@ -51,5 +52,10 @@ public class Hand {
 
     public boolean hasChoice() {
         return choice != null;
+    }
+
+    @Override
+    public String toString() {
+        return cards.stream().map(c -> c.getName()).collect(Collectors.joining(","));
     }
 }
