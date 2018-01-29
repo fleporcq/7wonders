@@ -2,9 +2,8 @@ package model.cards;
 
 import model.Age;
 import model.Coins;
-import model.resources.Resource;
-import model.resources.ResourceType;
 
+import static model.Resource.*;
 import static model.cards.CardType.*;
 
 public class DeckAgeI extends Deck {
@@ -64,7 +63,7 @@ public class DeckAgeI extends Deck {
         add(panwshop, 4, 7);
 
         Card baths = createCard(CIVILIAN_STRUCTURE, "baths");
-        baths.addCosts(new Resource(ResourceType.STONE));
+        baths.addCosts(STONE);
         add(baths, 3, 7);
 
         Card altar = createCard(CIVILIAN_STRUCTURE, "altar");
@@ -86,27 +85,27 @@ public class DeckAgeI extends Deck {
         add(marketplace, 3, 6);
 
         Card stockade = createCard(MILITARY_STRUCTURE, "stockade");
-        stockade.addCosts(new Resource(ResourceType.WOOD));
+        stockade.addCosts(WOOD);
         add(stockade, 3, 7);
 
         Card barracks = createCard(MILITARY_STRUCTURE, "barracks");
-        barracks.addCosts(new Resource(ResourceType.ORE));
+        barracks.addCosts(ORE);
         add(barracks, 3, 5);
 
         Card guardTower = createCard(MILITARY_STRUCTURE, "guard tower");
-        guardTower.addCosts(new Resource(ResourceType.CLAY));
+        guardTower.addCosts(CLAY);
         add(guardTower, 3, 4);
 
         Card apothecary = createCard(SCIENTIFIC_STRUCTURE, "apothecary");
-        apothecary.addCosts(new Resource(ResourceType.LOOM));
+        apothecary.addCosts(LOOM);
         add(apothecary, 3, 5);
 
         Card workshop = createCard(SCIENTIFIC_STRUCTURE, "workshop");
-        workshop.addCosts(new Resource(ResourceType.GLASS));
+        workshop.addCosts(GLASS);
         add(workshop, 3, 7);
 
         Card scriptorium = createCard(SCIENTIFIC_STRUCTURE, "scriptorium");
-        scriptorium.addCosts(new Resource(ResourceType.PAPYRUS));
+        scriptorium.addCosts(PAPYRUS);
         add(scriptorium, 3, 4);
     }
 }

@@ -2,9 +2,9 @@ package model.cards;
 
 import model.Age;
 import model.Coins;
-import model.resources.Resource;
+
+import static model.Resource.*;
 import static model.cards.CardType.*;
-import static model.resources.ResourceType.*;
 
 public class DeckAgeII extends Deck {
 
@@ -40,27 +40,27 @@ public class DeckAgeII extends Deck {
         add(press, 3, 5);
 
         Card aqueduct = createCard(CIVILIAN_STRUCTURE, "aqueduct");
-        aqueduct.addCosts(new Resource(STONE), new Resource(STONE), new Resource(STONE));
+        aqueduct.addCosts(STONE, STONE, STONE);
         add(aqueduct, 3, 7);
 
         Card temple = createCard(CIVILIAN_STRUCTURE, "temple");
-        temple.addCosts(new Resource(WOOD), new Resource(CLAY), new Resource(GLASS));
+        temple.addCosts(WOOD, CLAY, GLASS);
         add(temple, 3, 6);
 
         Card statue = createCard(CIVILIAN_STRUCTURE, "statue");
-        statue.addCosts(new Resource(ORE), new Resource(ORE), new Resource(WOOD));
+        statue.addCosts(ORE, ORE, WOOD);
         add(statue, 3, 7);
 
         Card courthouse = createCard(CIVILIAN_STRUCTURE, "courthouse");
-        courthouse.addCosts(new Resource(CLAY), new Resource(CLAY), new Resource(LOOM));
+        courthouse.addCosts(CLAY, CLAY, LOOM);
         add(courthouse, 3, 5);
 
         Card forum = createCard(COMMERCIAL_STRUCTURE, "forum");
-        forum.addCosts(new Resource(CLAY), new Resource(CLAY));
+        forum.addCosts(CLAY, CLAY);
         add(forum, 3, 6, 7);
 
         Card caravansery = createCard(COMMERCIAL_STRUCTURE, "caravansery");
-        caravansery.addCosts(new Resource(WOOD), new Resource(WOOD));
+        caravansery.addCosts(WOOD, WOOD);
         add(caravansery, 3, 5, 6);
 
         Card vineyard = createCard(COMMERCIAL_STRUCTURE, "vineyard");
@@ -70,35 +70,35 @@ public class DeckAgeII extends Deck {
         add(bazar, 4, 7);
 
         Card walls = createCard(MILITARY_STRUCTURE, "walls");
-        walls.addCosts(new Resource(STONE), new Resource(STONE), new Resource(STONE));
+        walls.addCosts(STONE, STONE, STONE);
         add(walls, 3, 7);
 
         Card trainingGround = createCard(MILITARY_STRUCTURE, "training ground");
-        trainingGround.addCosts(new Resource(ORE), new Resource(ORE), new Resource(WOOD));
+        trainingGround.addCosts(ORE, ORE, WOOD);
         add(trainingGround, 4, 6, 7);
 
         Card stables = createCard(MILITARY_STRUCTURE, "stables");
-        stables.addCosts(new Resource(ORE), new Resource(CLAY), new Resource(WOOD));
+        stables.addCosts(ORE, CLAY, WOOD);
         add(stables, 3, 5);
 
         Card archeryRange = createCard(MILITARY_STRUCTURE, "archery range");
-        archeryRange.addCosts(new Resource(WOOD), new Resource(WOOD), new Resource(ORE));
+        archeryRange.addCosts(WOOD, WOOD, ORE);
         add(archeryRange, 3, 6);
 
         Card dispensary = createCard(SCIENTIFIC_STRUCTURE, "dispensary");
-        dispensary.addCosts(new Resource(ORE), new Resource(ORE), new Resource(GLASS));
+        dispensary.addCosts(ORE, ORE, GLASS);
         add(dispensary, 3, 4);
 
         Card laboratory = createCard(SCIENTIFIC_STRUCTURE, "laboratory");
-        laboratory.addCosts(new Resource(CLAY), new Resource(CLAY), new Resource(PAPYRUS));
+        laboratory.addCosts(CLAY, CLAY, PAPYRUS);
         add(laboratory, 3, 5);
 
         Card library = createCard(SCIENTIFIC_STRUCTURE, "library");
-        library.addCosts(new Resource(STONE), new Resource(STONE), new Resource(LOOM));
+        library.addCosts(STONE, STONE, LOOM);
         add(library, 3, 6);
 
         Card school = createCard(SCIENTIFIC_STRUCTURE, "school");
-        school.addCosts(new Resource(WOOD), new Resource(PAPYRUS));
+        school.addCosts(WOOD, PAPYRUS);
         add(school, 3, 7);
     }
 }

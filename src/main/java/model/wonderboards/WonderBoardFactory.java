@@ -1,7 +1,6 @@
 package model.wonderboards;
 
-import model.resources.Resource;
-import model.resources.ResourceType;
+import model.Resource;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,31 +20,31 @@ public class WonderBoardFactory {
 
     public WonderBoard getWonderBoard(City city, Side side) {
         WonderBoard wonderBoard = new WonderBoard(city, side);
-        ResourceType baseResource = null;
+        Resource baseResource = null;
         switch (city) {
             case GIZAH:
-                baseResource = ResourceType.STONE;
+                baseResource = Resource.STONE;
                 break;
             case RHODES:
-                baseResource = ResourceType.ORE;
+                baseResource = Resource.ORE;
                 break;
             case BABYLON:
-                baseResource = ResourceType.CLAY;
+                baseResource = Resource.CLAY;
                 break;
             case EPHESOS:
-                baseResource = ResourceType.PAPYRUS;
+                baseResource = Resource.PAPYRUS;
                 break;
             case OLYMPIA:
-                baseResource = ResourceType.WOOD;
+                baseResource = Resource.WOOD;
                 break;
             case ALEXANDRIA:
-                baseResource = ResourceType.GLASS;
+                baseResource = Resource.GLASS;
                 break;
             case HALIKARNASSOS:
-                baseResource = ResourceType.LOOM;
+                baseResource = Resource.LOOM;
                 break;
         }
-        wonderBoard.addResource(new Resource(baseResource));
+        wonderBoard.addResource(baseResource);
         return wonderBoard;
     }
 

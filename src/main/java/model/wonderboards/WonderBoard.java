@@ -4,8 +4,7 @@ import model.Bonus;
 import model.Cost;
 import model.RulesViolationException;
 import model.cards.Card;
-import model.resources.Resource;
-import model.resources.ResourceType;
+import model.Resource;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -63,16 +62,16 @@ public class WonderBoard {
         return coins;
     }
 
-    public boolean has(ResourceType type, int count) {
+    public boolean has(Resource type, int count) {
         int total = 0;
         for (Resource resource : resources) {
-            if (resource.is(type))
+            if (resource == type)
                 total++;
         }
         return total >= count;
     }
 
-    public boolean has(ResourceType type) {
+    public boolean has(Resource type) {
         return has(type, 1);
     }
 

@@ -1,4 +1,4 @@
-import model.resources.ResourceType;
+import model.Resource;
 import model.wonderboards.City;
 import model.wonderboards.Side;
 import model.wonderboards.WonderBoard;
@@ -14,7 +14,7 @@ public class WonderBoardTests {
     void testGetBonus() {
         WonderBoardFactory wonderBoardFactory = new WonderBoardFactory();
         WonderBoard wonderBoard = wonderBoardFactory.getWonderBoard(City.EPHESOS, Side.A);
-        assertTrue(wonderBoard.has(ResourceType.PAPYRUS));
+        assertTrue(wonderBoard.has(Resource.PAPYRUS));
     }
 
     @Test
