@@ -101,7 +101,7 @@ public class Game {
         return true;
     }
 
-    private void errorIfNotStarted() {
+    public void errorIfNotStarted() {
         if (!started)
             throw new IllegalStateException("The game is not yet started");
     }

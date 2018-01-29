@@ -32,6 +32,7 @@ public class Player {
     }
 
     public void setWonderBoard(WonderBoard wonderBoard) {
+        game.errorIfNotStarted();
         this.wonderBoard = wonderBoard;
     }
 
@@ -44,13 +45,13 @@ public class Player {
     }
 
     public void choose(Card card) {
-        if(played)
+        if (played)
             throw new RulesViolationException("You have already played for this turn");
         hand.choose(card);
     }
 
     public void cancelChoice() {
-        if(played)
+        if (played)
             throw new RulesViolationException("You have already played for this turn");
         if (game.allPlayersHaveChoosenACard())
             throw new RulesViolationException("You cannot cancel your choice because all players have chosen a card");
@@ -62,7 +63,7 @@ public class Player {
     }
 
     public void build() {
-        if(played)
+        if (played)
             throw new RulesViolationException("You have already played for this turn");
         if (!game.allPlayersHaveChoosenACard())
             throw new RulesViolationException("All players have not yet chosen a card");
@@ -72,7 +73,7 @@ public class Player {
     }
 
     public void sell() {
-        if(played)
+        if (played)
             throw new RulesViolationException("You have already played for this turn");
         if (!game.allPlayersHaveChoosenACard())
             throw new RulesViolationException("All players have not yet chosen a card");
