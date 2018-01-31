@@ -77,12 +77,12 @@ public class Game {
         errorIfNotStarted();
         Player player = null;
         for (Card card : deck.getCards()) {
-            player = nextPlayer(player);
+            player = getRightNeighbor(player);
             player.getHand().add(card);
         }
     }
 
-    private Player nextPlayer(Player current) {
+    public Player getRightNeighbor(Player current) {
         Integer index = current == null ? null : players.indexOf(current);
         int next;
         if (index == null)
@@ -90,6 +90,16 @@ public class Game {
         else
             next = index < players.size() - 1 ? index + 1 : 0;
         return players.get(next);
+    }
+
+    public Player getLeftNeighbor(Player current) {
+        Integer index = current == null ? null : players.indexOf(current);
+        int previous;
+        if (index == null)
+            previous = 0;
+        else
+            previous = index > 0 ? index - 1 : players.size() - 1;
+        return players.get(previous);
     }
 
     public boolean allPlayersHaveChoosenACard() {
@@ -105,5 +115,4 @@ public class Game {
         if (!started)
             throw new IllegalStateException("The game is not yet started");
     }
-
 }

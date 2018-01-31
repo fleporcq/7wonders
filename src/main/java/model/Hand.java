@@ -28,6 +28,14 @@ public class Hand {
         return card;
     }
 
+    public Card getChoice() {
+        return choice;
+    }
+
+    public boolean hasChoice() {
+        return choice != null;
+    }
+
     public Card popChoice() {
         Card card = choice;
         choice = null;
@@ -48,10 +56,6 @@ public class Hand {
             throw new IllegalArgumentException("This card is not part of your hand");
         cards.remove(card);
         choice = card;
-    }
-
-    public boolean hasChoice() {
-        return choice != null;
     }
 
     @Override

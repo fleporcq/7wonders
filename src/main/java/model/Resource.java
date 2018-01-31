@@ -1,10 +1,8 @@
 package model;
 
-import model.Bonus;
-import model.Cost;
 import model.wonderboards.WonderBoard;
 
-public enum Resource implements Bonus, Cost {
+public enum Resource implements Bonus, Cost, Payment {
     CLAY,
     ORE,
     STONE,

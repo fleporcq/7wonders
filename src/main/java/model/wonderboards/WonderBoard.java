@@ -1,10 +1,8 @@
 package model.wonderboards;
 
 import model.Bonus;
-import model.Cost;
-import model.RulesViolationException;
-import model.cards.Card;
 import model.Resource;
+import model.cards.Card;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,6 +34,10 @@ public class WonderBoard {
 
     public Side getSide() {
         return side;
+    }
+
+    public List<Resource> getResources() {
+        return resources;
     }
 
     public List<Card> getBuiltCards() {
@@ -75,29 +77,17 @@ public class WonderBoard {
         return has(type, 1);
     }
 
-    @Override
-    public String toString() {
-        return city + " " + side;
-    }
-
     public void build(Card card) {
-        List<Cost> costs = card.getCosts();
-
-        if (!canPay(costs))
-            throw new RulesViolationException("You have not enough resources or coins to pay this card");
-
         builtCards.add(card);
-
-        for (Cost cost : costs) {
-            cost.pay(this);
-        }
 
         for (Bonus bonus : card.getBonuses()) {
             bonus.apply(this);
         }
     }
 
-    private boolean canPay(List<Cost> costs) {
-        return true;
+    @Override
+    public String toString() {
+        return city + " " + side;
     }
+
 }
