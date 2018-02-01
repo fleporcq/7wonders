@@ -1,4 +1,4 @@
-import model.Buy;
+import model.Purchase;
 import model.Coin;
 import model.Direction;
 import model.Resource;
@@ -24,7 +24,7 @@ public class CardTests {
     void validateAPaymentWithOneOfNeighborsResources() {
         DeckAgeI deck = new DeckAgeI(3);
         Card stockade = deck.getCard("stockade");
-        boolean valid = stockade.validatePayment(new Buy(Resource.WOOD, Direction.LEFT));
+        boolean valid = stockade.validatePayment(new Purchase(Resource.WOOD, Direction.LEFT));
         assertTrue(valid);
     }
 
@@ -48,7 +48,7 @@ public class CardTests {
     void validateAPaymentWithMultipleResources() {
         DeckAgeIII deck = new DeckAgeIII(3);
         Card stockade = deck.getCard("university");
-        boolean valid = stockade.validatePayment(Resource.WOOD, new Buy(Resource.WOOD, Direction.LEFT), Resource.PAPYRUS, new Buy(Resource.GLASS, Direction.RIGHT));
+        boolean valid = stockade.validatePayment(Resource.WOOD, new Purchase(Resource.WOOD, Direction.LEFT), Resource.PAPYRUS, new Purchase(Resource.GLASS, Direction.RIGHT));
         assertTrue(valid);
     }
 }

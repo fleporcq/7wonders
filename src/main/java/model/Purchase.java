@@ -1,12 +1,12 @@
 package model;
 
-public class Buy implements Payment {
+public class Purchase implements Payment {
 
     private Resource resource;
 
     private Direction direction;
 
-    public Buy(Resource resource, Direction direction) {
+    public Purchase(Resource resource, Direction direction) {
         if (resource == null)
             throw new IllegalArgumentException("The resource cannot be null");
         if (direction == null)

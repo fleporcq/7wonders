@@ -2,13 +2,12 @@ package model;
 
 import model.cards.Card;
 import model.wonderboards.WonderBoard;
+import service.PaymentService;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class Player {
-
-    private static final int DEFAULT_RESOURCE_COST = 2;
 
     private String name;
 
@@ -76,18 +75,17 @@ public class Player {
         if (!card.validatePayment(payments))
             throw new RulesViolationException("Your payment is incorrect");
 
-        if (simulatePayment(payments)) {
+        if (validatePayment(payments)) {
             pay(payments);
             card = hand.popChoice();
             wonderBoard.build(card);
             played = true;
-        } else {
+        } else
             throw new RulesViolationException("You cannot pay this card");
-        }
     }
 
 
-    public boolean simulatePayment(Payment... payments) {
+    public boolean validatePayment(Payment... payments) {
         return pay(true, payments);
     }
 
@@ -95,72 +93,9 @@ public class Player {
         return pay(false, payments);
     }
 
-    public boolean pay(boolean simulate, Payment... payments) {
-
-        List<Resource> playerResources = new ArrayList<>();
-        List<Resource> leftResources = new ArrayList<>();
-        List<Resource> rightResources = new ArrayList<>();
-
-        if (wonderBoard != null)
-            playerResources.addAll(wonderBoard.getResources());
-
-        Player leftNeighbor = getLeftNeighbor();
-        if (leftNeighbor != null)
-            leftResources.addAll(leftNeighbor.getWonderBoard().getResources());
-
-        Player rightNeighbor = getRightNeighbor();
-        if (rightNeighbor != null)
-            rightResources.addAll(rightNeighbor.getWonderBoard().getResources());
-
-        for (Payment payment : payments) {
-            if (payment instanceof Resource) {
-                if (!playerResources.contains(payment))
-                    return false;
-                else
-                    playerResources.remove(payment);
-            } else if (payment instanceof Buy) {
-                Buy buy = (Buy) payment;
-                Resource resource = buy.getResource();
-                if (buy.getDirection() == Direction.LEFT) {
-                    if (!leftResources.contains(resource))
-                        return false;
-                    else {
-                        if (wonderBoard != null && wonderBoard.getCoins() > DEFAULT_RESOURCE_COST) {
-                            leftResources.remove(resource);
-                            if (!simulate) {
-                                leftNeighbor.getWonderBoard().addCoins(DEFAULT_RESOURCE_COST);
-                                getWonderBoard().removeCoins(DEFAULT_RESOURCE_COST);
-                            }
-                        } else {
-                            return false;
-                        }
-                    }
-                } else {
-                    if (!rightResources.contains(resource))
-                        return false;
-                    else {
-                        if (wonderBoard != null && wonderBoard.getCoins() > DEFAULT_RESOURCE_COST) {
-                            rightResources.remove(resource);
-                            if (!simulate) {
-                                rightNeighbor.getWonderBoard().addCoins(DEFAULT_RESOURCE_COST);
-                                getWonderBoard().removeCoins(DEFAULT_RESOURCE_COST);
-                            }
-                        } else {
-                            return false;
-                        }
-                    }
-                }
-            } else if (payment instanceof Coin) {
-                if (wonderBoard != null && wonderBoard.getCoins() > 0) {
-                    if (!simulate) {
-                        wonderBoard.removeCoins(1);
-                    }
-                } else {
-                    return false;
-                }
-            }
-        }
-        return true;
+    private boolean pay(boolean simulate, Payment... payments) {
+        PaymentService paymentService = new PaymentService(this);
+        return paymentService.pay(simulate, payments);
     }
 
     public Player getLeftNeighbor() {
@@ -183,5 +118,29 @@ public class Player {
         hand.popChoice();
         wonderBoard.addCoins(Game.CARD_DISCARDING_AMOUT);
         played = true;
+    }
+
+    public List<Resource> getResources() {
+        if (wonderBoard != null)
+            return wonderBoard.getResources();
+        return null;
+    }
+
+    public int getCoins() {
+        if (wonderBoard != null)
+            return wonderBoard.getCoins();
+        return 0;
+    }
+
+    public void addCoins(int amount) {
+        if (wonderBoard == null)
+            throw new IllegalStateException("The player has not yet a wonder board");
+        wonderBoard.addCoins(amount);
+    }
+
+    public void removeCoins(int amount) {
+        if (wonderBoard == null)
+            throw new IllegalStateException("The player has not yet a wonder board");
+        wonderBoard.removeCoins(amount);
     }
 }

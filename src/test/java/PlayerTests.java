@@ -131,8 +131,8 @@ public class PlayerTests implements DataTestsFactory {
         louise.setWonderBoard(wonderBoardFactory.get(BABYLON, A));
         antoine.setWonderBoard(wonderBoardFactory.get(OLYMPIA, A));
         game.handOutCoins(3);
-        assertTrue(francois.simulatePayment(ORE, new Buy(WOOD, LEFT), new Buy(CLAY, RIGHT)));
-        assertFalse(francois.simulatePayment(ORE, new Buy(CLAY, LEFT), new Buy(WOOD, RIGHT)));
+        assertTrue(francois.validatePayment(ORE, new Purchase(WOOD, LEFT), new Purchase(CLAY, RIGHT)));
+        assertFalse(francois.validatePayment(ORE, new Purchase(CLAY, LEFT), new Purchase(WOOD, RIGHT)));
     }
 
     @Test
@@ -200,7 +200,7 @@ public class PlayerTests implements DataTestsFactory {
         louise.choose(louise.getHand().get("stone pit"));
         antoine.choose(antoine.getHand().get("clay pool"));
         try {
-            francois.build(new Buy(WOOD, LEFT));
+            francois.build(new Purchase(WOOD, LEFT));
         } catch (RulesViolationException e) {
             fail(e.getMessage());
         }

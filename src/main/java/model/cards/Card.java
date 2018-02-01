@@ -74,8 +74,8 @@ public class Card implements Cloneable {
                 Resource resource = (Resource) payment;
                 if (costs.contains(resource))
                     costs.remove(resource);
-            } else if (payment instanceof Buy) {
-                Resource resource = ((Buy) payment).getResource();
+            } else if (payment instanceof Purchase) {
+                Resource resource = ((Purchase) payment).getResource();
                 if (costs.contains(resource))
                     costs.remove(resource);
             } else if (payment instanceof Coin) {
