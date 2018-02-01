@@ -130,8 +130,9 @@ public class PlayerTests implements DataTestsFactory {
         francois.setWonderBoard(wonderBoardFactory.get(RHODES, A));
         louise.setWonderBoard(wonderBoardFactory.get(BABYLON, A));
         antoine.setWonderBoard(wonderBoardFactory.get(OLYMPIA, A));
-        assertTrue(francois.pay(ORE, new Buy(WOOD, LEFT), new Buy(CLAY, RIGHT)));
-        assertFalse(francois.pay(ORE, new Buy(CLAY, LEFT), new Buy(WOOD, RIGHT)));
+        game.handOutCoins(3);
+        assertTrue(francois.simulatePayment(ORE, new Buy(WOOD, LEFT), new Buy(CLAY, RIGHT)));
+        assertFalse(francois.simulatePayment(ORE, new Buy(CLAY, LEFT), new Buy(WOOD, RIGHT)));
     }
 
     @Test
@@ -194,7 +195,7 @@ public class PlayerTests implements DataTestsFactory {
         louise.setWonderBoard(wonderBoardFactory.get(BABYLON, A));
         antoine.setWonderBoard(wonderBoardFactory.get(OLYMPIA, A));
         game.handOutCards(new DeckAgeI(3));
-
+        game.handOutCoins(3);
         francois.choose(francois.getHand().get("stockade"));
         louise.choose(louise.getHand().get("stone pit"));
         antoine.choose(antoine.getHand().get("clay pool"));

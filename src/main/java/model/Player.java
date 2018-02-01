@@ -8,6 +8,8 @@ import java.util.List;
 
 public class Player {
 
+    private static final int DEFAULT_RESOURCE_COST = 2;
+
     private String name;
 
     private WonderBoard wonderBoard;
@@ -16,7 +18,7 @@ public class Player {
 
     private Game game;
 
-    boolean played;
+    private boolean played;
 
     public Player(String name) {
         if (name == null || name.trim().equals(""))
@@ -74,7 +76,8 @@ public class Player {
         if (!card.validatePayment(payments))
             throw new RulesViolationException("Your payment is incorrect");
 
-        if (pay(payments)) {
+        if (simulatePayment(payments)) {
+            pay(payments);
             card = hand.popChoice();
             wonderBoard.build(card);
             played = true;
@@ -83,7 +86,16 @@ public class Player {
         }
     }
 
+
+    public boolean simulatePayment(Payment... payments) {
+        return pay(true, payments);
+    }
+
     public boolean pay(Payment... payments) {
+        return pay(false, payments);
+    }
+
+    public boolean pay(boolean simulate, Payment... payments) {
 
         List<Resource> playerResources = new ArrayList<>();
         List<Resource> leftResources = new ArrayList<>();
@@ -112,19 +124,40 @@ public class Player {
                 if (buy.getDirection() == Direction.LEFT) {
                     if (!leftResources.contains(resource))
                         return false;
-                    else
-                        leftResources.remove(resource);
+                    else {
+                        if (wonderBoard != null && wonderBoard.getCoins() > DEFAULT_RESOURCE_COST) {
+                            leftResources.remove(resource);
+                            if (!simulate) {
+                                leftNeighbor.getWonderBoard().addCoins(DEFAULT_RESOURCE_COST);
+                                getWonderBoard().removeCoins(DEFAULT_RESOURCE_COST);
+                            }
+                        } else {
+                            return false;
+                        }
+                    }
                 } else {
                     if (!rightResources.contains(resource))
                         return false;
-                    else
-                        rightResources.remove(resource);
+                    else {
+                        if (wonderBoard != null && wonderBoard.getCoins() > DEFAULT_RESOURCE_COST) {
+                            rightResources.remove(resource);
+                            if (!simulate) {
+                                rightNeighbor.getWonderBoard().addCoins(DEFAULT_RESOURCE_COST);
+                                getWonderBoard().removeCoins(DEFAULT_RESOURCE_COST);
+                            }
+                        } else {
+                            return false;
+                        }
+                    }
                 }
             } else if (payment instanceof Coin) {
-                if (wonderBoard != null && wonderBoard.getCoins() > 0)
-                    wonderBoard.removeCoins(1);
-                else
+                if (wonderBoard != null && wonderBoard.getCoins() > 0) {
+                    if (!simulate) {
+                        wonderBoard.removeCoins(1);
+                    }
+                } else {
                     return false;
+                }
             }
         }
         return true;
