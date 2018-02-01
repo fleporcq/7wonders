@@ -11,14 +11,14 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 public class WonderBoardTests {
 
     @Test
-    void testGetBonus() {
+    void getTheBonus() {
         WonderBoardFactory wonderBoardFactory = new WonderBoardFactory();
         WonderBoard wonderBoard = wonderBoardFactory.get(City.EPHESOS, Side.A);
         assertTrue(wonderBoard.has(Resource.PAPYRUS));
     }
 
     @Test
-    void testAddCoins() {
+    void addSomeCoins() {
         WonderBoardFactory wonderBoardFactory = new WonderBoardFactory();
         WonderBoard wonderBoard = wonderBoardFactory.get(City.EPHESOS, Side.A);
         wonderBoard.addCoins(3);
@@ -26,7 +26,7 @@ public class WonderBoardTests {
     }
 
     @Test
-    void testRemoveCoins() {
+    void removeSomeCoins() {
         WonderBoardFactory wonderBoardFactory = new WonderBoardFactory();
         WonderBoard wonderBoard = wonderBoardFactory.get(City.EPHESOS, Side.A);
         wonderBoard.addCoins(3);

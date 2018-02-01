@@ -13,7 +13,7 @@ import static org.junit.jupiter.api.Assertions.*;
 public class GameTests {
 
     @Test
-    void testAddPlayersToGame() {
+    void addSomePlayersToTheGame() {
         Game game = new Game();
         game.addPlayer(new Player("François"));
         game.addPlayer(new Player("Louise"));
@@ -24,7 +24,7 @@ public class GameTests {
     }
 
     @Test
-    void testAddTooMuchPlayersToGame() {
+    void addTooMuchPlayersToTheGame() {
         Game game = new Game();
         try {
             game.addPlayer(new Player("François"));
@@ -42,7 +42,7 @@ public class GameTests {
     }
 
     @Test
-    void testStartTheGame() {
+    void startTheGame() {
         Game game = new Game();
         game.addPlayer(new Player("François"));
         game.addPlayer(new Player("Louise"));
@@ -55,7 +55,7 @@ public class GameTests {
     }
 
     @Test
-    void testStartTheGameWithNotEnoughPlayer() {
+    void startTheGameWithNotEnoughPlayers() {
         Game game = new Game();
         game.addPlayer(new Player("François"));
         game.addPlayer(new Player("Louise"));
@@ -68,7 +68,7 @@ public class GameTests {
     }
 
     @Test
-    void testAddPlayerAfterTheGameStarts() {
+    void addAPlayerAfterTheGameStarts() {
         Game game = new Game();
         game.addPlayer(new Player("François"));
         game.addPlayer(new Player("Louise"));
@@ -82,7 +82,7 @@ public class GameTests {
     }
 
     @Test
-    void testStartTheGameTwoTimes() {
+    void startTheGameTwoTimes() {
         Game game = new Game();
         game.addPlayer(new Player("François"));
         game.addPlayer(new Player("Louise"));
@@ -96,7 +96,7 @@ public class GameTests {
     }
 
     @Test
-    void testAddPlayerWithSameName() {
+    void addAPlayerWithANameAlreadyUsed() {
         Game game = new Game();
         game.addPlayer(new Player("François"));
         try {
@@ -108,7 +108,7 @@ public class GameTests {
     }
 
     @Test
-    void testHandOutWonderBoards() {
+    void handOutTheWonderBoards() {
         Game game = new Game();
         Player francois = new Player("François");
         Player louise = new Player("Louise");
@@ -128,7 +128,7 @@ public class GameTests {
     }
 
     @Test
-    void testHandOutCoins() {
+    void handOutTheCoins() {
         Game game = new Game();
         Player francois = new Player("François");
         Player louise = new Player("Louise");
@@ -148,7 +148,7 @@ public class GameTests {
     }
 
     @Test
-    void testHandOutCards() {
+    void handOutTheCards() {
         Game game = new Game();
         Player francois = new Player("François");
         Player louise = new Player("Louise");
@@ -164,7 +164,7 @@ public class GameTests {
     }
 
     @Test
-    void testAllPlayerHaveChosenACard() {
+    void checkIfAllPlayersHaveChosenACard() {
         Game game = new Game();
         Player francois = new Player("François");
         Player louise = new Player("Louise");

@@ -14,7 +14,7 @@ import static org.junit.jupiter.api.Assertions.*;
 public class PlayerTests implements DataTestsFactory {
 
     @Test
-    void testCreatePlayerWithEmptyName() {
+    void createAPlayerWithAnEmptyName() {
         try {
             new Player(null);
         } catch (IllegalArgumentException e) {
@@ -33,7 +33,7 @@ public class PlayerTests implements DataTestsFactory {
     }
 
     @Test
-    void testAPlayerChoosesACard() {
+    void chooseACard() {
         Game game = startATestGame("François", "Louise", "Antoine");
         Player francois = game.getPlayer("François");
         assertEquals(7, francois.getHand().getCards().size());
@@ -43,7 +43,7 @@ public class PlayerTests implements DataTestsFactory {
     }
 
     @Test
-    void testAPlayerCancelsHisChoice() {
+    void cancelHisChoice() {
         Game game = startATestGame("François", "Louise", "Antoine");
         Player francois = game.getPlayer("François");
         Player louise = game.getPlayer("Louise");
@@ -53,7 +53,7 @@ public class PlayerTests implements DataTestsFactory {
     }
 
     @Test
-    void testAPlayerSellsACard() {
+    void sellACard() {
         Game game = startATestGame("François", "Louise", "Antoine");
         Player francois = game.getPlayer("François");
         Player louise = game.getPlayer("Louise");
@@ -68,7 +68,7 @@ public class PlayerTests implements DataTestsFactory {
     }
 
     @Test
-    void testAPlayerSellsACardAndChooseACard() {
+    void sellACardAndChooseACard() {
         Game game = startATestGame("François", "Louise", "Antoine");
         Player francois = game.getPlayer("François");
         Player louise = game.getPlayer("Louise");
@@ -85,7 +85,7 @@ public class PlayerTests implements DataTestsFactory {
     }
 
     @Test
-    void testGetNeighborsOfAPlayer() {
+    void getNeighborsOfAPlayer() {
         Game game = startATestGame("François", "Louise", "Antoine");
         Player francois = game.getPlayer("François");
         Player louise = game.getPlayer("Louise");
@@ -102,7 +102,7 @@ public class PlayerTests implements DataTestsFactory {
     }
 
     @Test
-    void testAPlayerPaysWithHisResources() {
+    void payWithHisResources() {
         Player francois = new Player("François");
         WonderBoardFactory wonderBoardFactory = new WonderBoardFactory();
         WonderBoard wonderBoard = wonderBoardFactory.get(RHODES, A);
@@ -117,7 +117,7 @@ public class PlayerTests implements DataTestsFactory {
     }
 
     @Test
-    void testAPlayerPaysWithNeighborsResources() {
+    void payWithNeighborsResources() {
         Game game = new Game();
         Player francois = new Player("François");
         Player louise = new Player("Louise");
@@ -135,7 +135,7 @@ public class PlayerTests implements DataTestsFactory {
     }
 
     @Test
-    void testAPlayerPaysWithCoins() {
+    void payWithCoins() {
         Player francois = new Player("François");
         WonderBoardFactory wonderBoardFactory = new WonderBoardFactory();
         WonderBoard wonderBoard = wonderBoardFactory.get(RHODES, A);
@@ -147,9 +147,9 @@ public class PlayerTests implements DataTestsFactory {
         assertFalse(francois.pay(new Coin()));
         assertEquals(0, wonderBoard.getCoins());
     }
-    
+
     @Test
-    void testAPlayerBuildsAFreeCard() {
+    void buildAFreeCard() {
         Game game = startATestGame("François", "Louise", "Antoine");
         Player francois = game.getPlayer("François");
         Player louise = game.getPlayer("Louise");
@@ -163,7 +163,7 @@ public class PlayerTests implements DataTestsFactory {
     }
 
     @Test
-    void testAPlayerBuildsAFreeCardAndChooseACard() {
+    void buildAFreeCardAndChooseACard() {
         Game game = startATestGame("François", "Louise", "Antoine");
         Player francois = game.getPlayer("François");
         Player louise = game.getPlayer("Louise");
@@ -180,7 +180,7 @@ public class PlayerTests implements DataTestsFactory {
     }
 
     @Test
-    void testAPlayerBuildsACardWithNeighborsResources() {
+    void buildACardWithNeighborsResources() {
         Game game = new Game();
         Player francois = new Player("François");
         Player louise = new Player("Louise");

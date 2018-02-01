@@ -13,7 +13,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 public class CardTests {
 
     @Test
-    void testValidateAPaymentWithOneOfMyResources() {
+    void validateAPaymentWithOneOfMyResources() {
         DeckAgeI deck = new DeckAgeI(3);
         Card stockade = deck.getCard("stockade");
         boolean valid = stockade.validatePayment(Resource.WOOD);
@@ -21,7 +21,7 @@ public class CardTests {
     }
 
     @Test
-    void testValidateAPaymentWithOneOfNeighborResources() {
+    void validateAPaymentWithOneOfNeighborsResources() {
         DeckAgeI deck = new DeckAgeI(3);
         Card stockade = deck.getCard("stockade");
         boolean valid = stockade.validatePayment(new Buy(Resource.WOOD, Direction.LEFT));
@@ -29,7 +29,7 @@ public class CardTests {
     }
 
     @Test
-    void testInvalidateAPaymentWithOneOfMyResources() {
+    void invalidateAPaymentWithOneOfMyResources() {
         DeckAgeI deck = new DeckAgeI(3);
         Card stockade = deck.getCard("stockade");
         boolean valid = stockade.validatePayment(Resource.CLAY);
@@ -37,7 +37,7 @@ public class CardTests {
     }
 
     @Test
-    void testValidateAPaymentWithOneCoin() {
+    void validateAPaymentWithOneCoin() {
         DeckAgeI deck = new DeckAgeI(3);
         Card clayPit = deck.getCard("clay pit");
         boolean valid = clayPit.validatePayment(new Coin());
@@ -45,7 +45,7 @@ public class CardTests {
     }
 
     @Test
-    void testValidateAPaymentWithMultipleResources() {
+    void validateAPaymentWithMultipleResources() {
         DeckAgeIII deck = new DeckAgeIII(3);
         Card stockade = deck.getCard("university");
         boolean valid = stockade.validatePayment(Resource.WOOD, new Buy(Resource.WOOD, Direction.LEFT), Resource.PAPYRUS, new Buy(Resource.GLASS, Direction.RIGHT));
