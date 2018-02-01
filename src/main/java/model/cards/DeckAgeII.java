@@ -1,7 +1,7 @@
 package model.cards;
 
 import model.Age;
-import model.Coins;
+import model.Coin;
 
 import static model.Resource.*;
 import static model.cards.CardType.*;
@@ -15,19 +15,19 @@ public class DeckAgeII extends Deck {
     @Override
     protected void build() {
         Card sawmill = createCard(RAW_MATERIAL, "sawmill");
-        sawmill.addCosts(new Coins(1));
+        sawmill.addCosts(new Coin());
         add(sawmill, 3, 4);
 
         Card quarry = createCard(RAW_MATERIAL, "quarry");
-        quarry.addCosts(new Coins(1));
+        quarry.addCosts(new Coin());
         add(quarry, 3, 4);
 
         Card brickyard = createCard(RAW_MATERIAL, "brickyard");
-        brickyard.addCosts(new Coins(1));
+        brickyard.addCosts(new Coin());
         add(brickyard, 3, 4);
 
         Card foundry = createCard(RAW_MATERIAL, "foundry");
-        foundry.addCosts(new Coins(1));
+        foundry.addCosts(new Coin());
         add(foundry, 3, 4);
 
         Card loom = createCard(MANUFACTURED_GOOD, "loom");

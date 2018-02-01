@@ -1,7 +1,7 @@
 package model.cards;
 
 import model.Age;
-import model.Coins;
+import model.Coin;
 
 import static model.Resource.*;
 import static model.cards.CardType.*;
@@ -27,27 +27,27 @@ public class DeckAgeI extends Deck {
         add(oreVein, 3, 4);
 
         Card treeFarm = createCard(RAW_MATERIAL, "tree farm");
-        treeFarm.addCosts(new Coins(1));
+        treeFarm.addCosts(new Coin());
         add(treeFarm, 6);
 
         Card excavation = createCard(RAW_MATERIAL, "excavation");
-        excavation.addCosts(new Coins(1));
+        excavation.addCosts(new Coin());
         add(excavation, 4);
 
         Card clayPit = createCard(RAW_MATERIAL, "clay pit");
-        clayPit.addCosts(new Coins(1));
+        clayPit.addCosts(new Coin());
         add(clayPit, 3);
 
         Card timberYard = createCard(RAW_MATERIAL, "timber yard");
-        timberYard.addCosts(new Coins(1));
+        timberYard.addCosts(new Coin());
         add(timberYard, 3);
 
         Card forestCave = createCard(RAW_MATERIAL, "forest cave");
-        forestCave.addCosts(new Coins(1));
+        forestCave.addCosts(new Coin());
         add(forestCave, 5);
 
         Card mine = createCard(RAW_MATERIAL, "mine");
-        mine.addCosts(new Coins(1));
+        mine.addCosts(new Coin());
         add(mine, 6);
 
         Card loom = createCard(MANUFACTURED_GOOD, "loom");

@@ -75,4 +75,14 @@ public abstract class Deck {
     public List<Card> getCards() {
         return selectedCards;
     }
+
+    public Card getCard(String name) {
+        if (name == null || name.trim().equals(""))
+            throw new IllegalArgumentException("The card's name cannot be null or empty");
+        for(Card card: selectedCards){
+            if(name.equals(card.getName()))
+                return card;
+        }
+        throw new IllegalArgumentException("This card is not a part of this deck");
+    }
 }

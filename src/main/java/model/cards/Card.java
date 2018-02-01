@@ -1,10 +1,9 @@
 package model.cards;
 
-import model.Age;
-import model.Bonus;
-import model.Cost;
+import model.*;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 public class Card implements Cloneable {
@@ -65,6 +64,33 @@ public class Card implements Cloneable {
 
     public Age getAge() {
         return age;
+    }
+
+    public boolean validatePayment(Payment... payments) {
+        List<Cost> costs = new ArrayList<>();
+        costs.addAll(getCosts());
+        for (Payment payment : payments) {
+            if (payment instanceof Resource) {
+                Resource resource = (Resource) payment;
+                if (costs.contains(resource))
+                    costs.remove(resource);
+            } else if (payment instanceof Buy) {
+                Resource resource = ((Buy) payment).getResource();
+                if (costs.contains(resource))
+                    costs.remove(resource);
+            } else if (payment instanceof Coin) {
+                Iterator<Cost> it = costs.iterator();
+                while (it.hasNext()) {
+                    Cost cost = it.next();
+                    if (cost instanceof Coin) {
+                        it.remove();
+                        break;
+                    }
+                }
+            }
+
+        }
+        return costs.size() == 0;
     }
 
     @Override

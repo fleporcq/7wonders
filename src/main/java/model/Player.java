@@ -35,7 +35,6 @@ public class Player {
     }
 
     public void setWonderBoard(WonderBoard wonderBoard) {
-        game.errorIfNotStarted();
         this.wonderBoard = wonderBoard;
     }
 
@@ -71,8 +70,12 @@ public class Player {
         if (!game.allPlayersHaveChoosenACard())
             throw new RulesViolationException("All players have not yet chosen a card");
 
+        Card card = hand.getChoice();
+        if (!card.validatePayment(payments))
+            throw new RulesViolationException("Your payment is incorrect");
+
         if (pay(payments)) {
-            Card card = hand.popChoice();
+            card = hand.popChoice();
             wonderBoard.build(card);
             played = true;
         } else {
@@ -80,19 +83,22 @@ public class Player {
         }
     }
 
-    private boolean pay(Payment[] payments) {
-        Card card = hand.getChoice();
-        List<Cost> cost = card.getCosts();
-        Player leftNeighbor = getLeftNeighbor();
-        Player rightNeighbor = getRightNeighbor();
+    public boolean pay(Payment... payments) {
 
         List<Resource> playerResources = new ArrayList<>();
         List<Resource> leftResources = new ArrayList<>();
         List<Resource> rightResources = new ArrayList<>();
 
-        playerResources.addAll(wonderBoard.getResources());
-        leftResources.addAll(leftNeighbor.getWonderBoard().getResources());
-        rightResources.addAll(rightNeighbor.getWonderBoard().getResources());
+        if (wonderBoard != null)
+            playerResources.addAll(wonderBoard.getResources());
+
+        Player leftNeighbor = getLeftNeighbor();
+        if (leftNeighbor != null)
+            leftResources.addAll(leftNeighbor.getWonderBoard().getResources());
+
+        Player rightNeighbor = getRightNeighbor();
+        if (rightNeighbor != null)
+            rightResources.addAll(rightNeighbor.getWonderBoard().getResources());
 
         for (Payment payment : payments) {
             if (payment instanceof Resource) {
@@ -109,22 +115,30 @@ public class Player {
                     else
                         leftResources.remove(resource);
                 } else {
-
                     if (!rightResources.contains(resource))
                         return false;
                     else
                         rightResources.remove(resource);
                 }
+            } else if (payment instanceof Coin) {
+                if (wonderBoard != null && wonderBoard.getCoins() > 0)
+                    wonderBoard.removeCoins(1);
+                else
+                    return false;
             }
         }
         return true;
     }
 
     public Player getLeftNeighbor() {
+        if (game == null)
+            return null;
         return game.getLeftNeighbor(this);
     }
 
     public Player getRightNeighbor() {
+        if (game == null)
+            return null;
         return game.getRightNeighbor(this);
     }
 
