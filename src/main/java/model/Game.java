@@ -39,6 +39,10 @@ public class Game {
         return players.size();
     }
 
+    public Discarding getDiscarding() {
+        return discarding;
+    }
+
     public void discard(Card card) {
         discarding.add(card);
     }

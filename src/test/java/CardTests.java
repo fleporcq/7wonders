@@ -1,16 +1,43 @@
-import model.Purchase;
-import model.Coin;
-import model.Direction;
-import model.Resource;
+import model.*;
 import model.cards.Card;
+import model.cards.CardType;
 import model.cards.DeckAgeI;
 import model.cards.DeckAgeIII;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class CardTests {
+
+    @Test
+    void createANewCard() {
+        try {
+            new Card(null, CardType.MILITARY_STRUCTURE, "stockade");
+        } catch (IllegalArgumentException e) {
+            assertEquals("The card's age cannot be null", e.getMessage());
+        }
+        try {
+            new Card(Age.I, null, "stockade");
+        } catch (IllegalArgumentException e) {
+            assertEquals("The card's type cannot be null", e.getMessage());
+        }
+        try {
+            new Card(Age.I, CardType.MILITARY_STRUCTURE, " ");
+        } catch (IllegalArgumentException e) {
+            assertEquals("The card's name cannot be null or empty", e.getMessage());
+        }
+        try {
+            new Card(Age.I, CardType.MILITARY_STRUCTURE, null);
+        } catch (IllegalArgumentException e) {
+            assertEquals("The card's name cannot be null or empty", e.getMessage());
+        }
+    }
+
+    @Test
+    void testToString() {
+        Card stockade = new Card(Age.I, CardType.MILITARY_STRUCTURE, "stockade");
+        assertEquals("stockade", stockade.toString());
+    }
 
     @Test
     void validateAPaymentWithOneOfMyResources() {

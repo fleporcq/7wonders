@@ -21,7 +21,7 @@ public abstract class Deck {
 
     public Deck(Age age, int playerCount) {
         if (playerCount < PLAYER_MIN || playerCount > PLAYER_MAX)
-            throw new IllegalArgumentException("The player count must be between " + PLAYER_MIN + " and " + PLAYER_MAX);
+            throw new IllegalArgumentException(String.format("The player count must be between %s and %S", PLAYER_MIN, PLAYER_MAX));
         this.age = age;
         build();
         selectCards(playerCount);
@@ -79,8 +79,8 @@ public abstract class Deck {
     public Card getCard(String name) {
         if (name == null || name.trim().equals(""))
             throw new IllegalArgumentException("The card's name cannot be null or empty");
-        for(Card card: selectedCards){
-            if(name.equals(card.getName()))
+        for (Card card : selectedCards) {
+            if (name.equals(card.getName()))
                 return card;
         }
         throw new IllegalArgumentException("This card is not a part of this deck");

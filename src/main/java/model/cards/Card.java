@@ -16,11 +16,15 @@ public class Card implements Cloneable {
 
     private int minPlayerCount;
 
-    private List<Bonus> bonuses = new ArrayList<>();
-
     private List<Cost> costs = new ArrayList<>();
 
     public Card(Age age, CardType type, String name) {
+        if (age == null)
+            throw new IllegalArgumentException("The card's age cannot be null");
+        if (type == null)
+            throw new IllegalArgumentException("The card's type cannot be null");
+        if (name == null || name.trim().equals(""))
+            throw new IllegalArgumentException("The card's name cannot be null or empty");
         this.age = age;
         this.type = type;
         this.name = name;
@@ -32,16 +36,6 @@ public class Card implements Cloneable {
 
     public String getName() {
         return name;
-    }
-
-    public void addBonuses(Bonus... bonuses) {
-        for (int i = 0; i < bonuses.length; i++) {
-            this.bonuses.add(bonuses[i]);
-        }
-    }
-
-    public List<Bonus> getBonuses() {
-        return bonuses;
     }
 
     public void addCosts(Cost... costs) {

@@ -1,6 +1,5 @@
 package model.wonderboards;
 
-import model.Bonus;
 import model.Resource;
 import model.cards.Card;
 
@@ -22,18 +21,10 @@ public class WonderBoard {
     public WonderBoard(City city, Side side) {
         if (city == null)
             throw new IllegalArgumentException("The wonderboard's city cannot be null");
-        if (city == null)
+        if (side == null)
             throw new IllegalArgumentException("The wonderboard's side cannot be null");
         this.city = city;
         this.side = side;
-    }
-
-    public City getCity() {
-        return city;
-    }
-
-    public Side getSide() {
-        return side;
     }
 
     public List<Resource> getResources() {
@@ -79,10 +70,6 @@ public class WonderBoard {
 
     public void build(Card card) {
         builtCards.add(card);
-
-        for (Bonus bonus : card.getBonuses()) {
-            bonus.apply(this);
-        }
     }
 
     @Override

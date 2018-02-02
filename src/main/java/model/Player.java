@@ -4,7 +4,6 @@ import model.cards.Card;
 import model.wonderboards.WonderBoard;
 import service.PaymentService;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Player {
@@ -73,7 +72,7 @@ public class Player {
 
         Card card = hand.getChoice();
         if (!card.validatePayment(payments))
-            throw new RulesViolationException("Your payment is incorrect");
+            throw new RulesViolationException("Your payment does not match the card's cost");
 
         if (validatePayment(payments)) {
             pay(payments);
@@ -81,7 +80,7 @@ public class Player {
             wonderBoard.build(card);
             played = true;
         } else
-            throw new RulesViolationException("You cannot pay this card");
+            throw new RulesViolationException("You cannot honour this payment");
     }
 
 
@@ -115,7 +114,7 @@ public class Player {
             throw new RulesViolationException("You have already played for this turn");
         if (!game.allPlayersHaveChoosenACard())
             throw new RulesViolationException("All players have not yet chosen a card");
-        hand.popChoice();
+        game.discard(hand.popChoice());
         wonderBoard.addCoins(Game.CARD_DISCARDING_AMOUT);
         played = true;
     }

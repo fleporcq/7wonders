@@ -6,6 +6,7 @@ import model.wonderboards.WonderBoard;
 import model.wonderboards.WonderBoardFactory;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -125,6 +126,25 @@ public class GameTests {
         assertNotNull(louise.getWonderBoard());
         assertNotNull(antoine.getWonderBoard());
         assertEquals(4, wonderBoards.size());
+    }
+
+    @Test
+    void handOutNotEnoughWonderBoards() {
+        Game game = new Game();
+        Player francois = new Player("François");
+        Player louise = new Player("Louise");
+        Player antoine = new Player("Antoine");
+        game.addPlayer(francois);
+        game.addPlayer(louise);
+        game.addPlayer(antoine);
+        game.start();
+
+        List<WonderBoard> wonderBoards = new ArrayList<>();
+        try {
+            game.handOutWonderBoards(wonderBoards);
+        } catch (IllegalArgumentException e) {
+            assertEquals("They are not enough wonder boards", e.getMessage());
+        }
     }
 
     @Test

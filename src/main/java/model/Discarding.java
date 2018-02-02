@@ -13,4 +13,8 @@ public class Discarding {
         cards.add(card);
     }
 
+    public int size() {
+        return cards.size();
+    }
+
 }

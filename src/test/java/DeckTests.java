@@ -6,8 +6,23 @@ import java.util.stream.Collectors;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 public class DeckTests {
+
+    @Test
+    void createDeckWithAnInvalidPlayersCount() {
+        try {
+           new DeckAgeI(2);
+        }catch (IllegalArgumentException e){
+            assertEquals("The player count must be between 3 and 7", e.getMessage());
+        }
+        try {
+            new DeckAgeI(8);
+        }catch (IllegalArgumentException e){
+            assertEquals("The player count must be between 3 and 7", e.getMessage());
+        }
+    }
 
     @Test
     void createDeckAgeIFor3Players() {
@@ -58,5 +73,26 @@ public class DeckTests {
 
     private String getCardsNames(List<Card> cards, int limit) {
         return cards.stream().limit(limit).map(c -> c.getName()).collect(Collectors.joining(","));
+    }
+
+    @Test
+    void getACardByHisName() {
+        Deck deck = new DeckAgeI(3);
+        assertNotNull(deck.getCard("lumber yard"));
+        try{
+            deck.getCard("test");
+        }catch (IllegalArgumentException e){
+            assertEquals("This card is not a part of this deck", e.getMessage());
+        }
+        try{
+            deck.getCard(" ");
+        }catch (IllegalArgumentException e){
+            assertEquals("The card's name cannot be null or empty", e.getMessage());
+        }
+        try{
+            deck.getCard(null);
+        }catch (IllegalArgumentException e){
+            assertEquals("The card's name cannot be null or empty", e.getMessage());
+        }
     }
 }

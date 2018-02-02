@@ -65,6 +65,7 @@ public class PlayerTests implements DataTestsFactory {
         francois.sell();
         assertEquals(6, francois.getWonderBoard().getCoins());
         assertFalse(francois.hasChosenACard());
+        assertEquals(1, game.getDiscarding().size());
     }
 
     @Test
@@ -181,7 +182,49 @@ public class PlayerTests implements DataTestsFactory {
     }
 
     @Test
-    void buildACardWithNeighborsResources() {
+    void buildACardWithHisResource() {
+        Game game = new Game();
+        Player francois = new Player("François");
+        Player louise = new Player("Louise");
+        Player antoine = new Player("Antoine");
+        game.addPlayer(francois);
+        game.addPlayer(louise);
+        game.addPlayer(antoine);
+        game.start();
+        WonderBoardFactory wonderBoardFactory = new WonderBoardFactory();
+        francois.setWonderBoard(wonderBoardFactory.get(GIZAH, A));
+        louise.setWonderBoard(wonderBoardFactory.get(BABYLON, A));
+        antoine.setWonderBoard(wonderBoardFactory.get(OLYMPIA, A));
+        game.handOutCards(new DeckAgeI(3));
+        game.handOutCoins(3);
+        francois.choose(francois.getHand().get("baths"));
+        louise.choose(louise.getHand().get("stone pit"));
+        antoine.choose(antoine.getHand().get("clay pool"));
+        try {
+            francois.build(STONE);
+        } catch (RulesViolationException e) {
+            fail(e.getMessage());
+        }
+    }
+
+    @Test
+    void buildACardWithACoin() {
+        Game game = startATestGame("François", "Louise", "Antoine");
+        Player francois = game.getPlayer("François");
+        Player louise = game.getPlayer("Louise");
+        Player antoine = game.getPlayer("Antoine");
+        francois.choose(francois.getHand().get("stockade"));
+        louise.choose(louise.getHand().get("clay pit"));
+        antoine.choose(antoine.getHand().get("clay pool"));
+        try {
+            louise.build(new Coin());
+        } catch (RulesViolationException e) {
+            fail(e.getMessage());
+        }
+    }
+
+    @Test
+    void buildACardWithAPurchase() {
         Game game = new Game();
         Player francois = new Player("François");
         Player louise = new Player("Louise");
@@ -204,19 +247,6 @@ public class PlayerTests implements DataTestsFactory {
         } catch (RulesViolationException e) {
             fail(e.getMessage());
         }
-        // François
-        // Rhodes
-        // lumber yard,ore vein,loom,baths,east trading post,stockade,apothecary
-
-
-        // Louise
-        // Babylon
-        // stone pit,clay pit,glassworks,altar,west trading post,barracks,workshop
-
-        // Antoine
-        // Olympia
-        // clay pool,timber yard,press,theater,marketplace,guard tower,scriptorium
-
     }
 
 }

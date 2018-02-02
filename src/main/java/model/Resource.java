@@ -15,9 +15,4 @@ public enum Resource implements Bonus, Cost, Payment {
     public void apply(WonderBoard wonderBoard) {
         wonderBoard.addResource(this);
     }
-
-    @Override
-    public void pay(WonderBoard wonderBoard) {
-
-    }
 }
