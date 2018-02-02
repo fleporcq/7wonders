@@ -40,7 +40,7 @@ public class Card implements Cloneable {
 
     public void addCosts(Cost... costs) {
         for (int i = 0; i < costs.length; i++) {
-            this.costs.add(costs[i]);
+            this.costs.addAll(costs[i].getCosts());
         }
     }
 
@@ -73,12 +73,14 @@ public class Card implements Cloneable {
                 if (costs.contains(resource))
                     costs.remove(resource);
             } else if (payment instanceof Coin) {
-                Iterator<Cost> it = costs.iterator();
-                while (it.hasNext()) {
-                    Cost cost = it.next();
-                    if (cost instanceof Coin) {
-                        it.remove();
-                        break;
+                for (int i = 0; i < ((Coin) payment).getValue(); i++) {
+                    Iterator<Cost> it = costs.iterator();
+                    while (it.hasNext()) {
+                        Cost cost = it.next();
+                        if (cost instanceof Coin) {
+                            it.remove();
+                            break;
+                        }
                     }
                 }
             }

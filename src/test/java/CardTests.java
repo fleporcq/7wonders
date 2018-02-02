@@ -43,39 +43,44 @@ public class CardTests {
     void validateAPaymentWithOneOfMyResources() {
         DeckAgeI deck = new DeckAgeI(3);
         Card stockade = deck.getCard("stockade");
-        boolean valid = stockade.validatePayment(Resource.WOOD);
-        assertTrue(valid);
+        assertTrue(stockade.validatePayment(Resource.WOOD));
     }
 
     @Test
     void validateAPaymentWithOneOfNeighborsResources() {
         DeckAgeI deck = new DeckAgeI(3);
         Card stockade = deck.getCard("stockade");
-        boolean valid = stockade.validatePayment(new Purchase(Resource.WOOD, Direction.LEFT));
-        assertTrue(valid);
+        assertTrue(stockade.validatePayment(new Purchase(Resource.WOOD, Direction.LEFT)));
     }
 
     @Test
     void invalidateAPaymentWithOneOfMyResources() {
         DeckAgeI deck = new DeckAgeI(3);
         Card stockade = deck.getCard("stockade");
-        boolean valid = stockade.validatePayment(Resource.CLAY);
-        assertFalse(valid);
+        assertFalse(stockade.validatePayment(Resource.CLAY));
     }
 
     @Test
     void validateAPaymentWithOneCoin() {
         DeckAgeI deck = new DeckAgeI(3);
         Card clayPit = deck.getCard("clay pit");
-        boolean valid = clayPit.validatePayment(new Coin());
-        assertTrue(valid);
+        assertTrue(clayPit.validatePayment(new Coin(1)));
+    }
+
+
+    @Test
+    void validateAPaymentWithCoins() {
+        Card fake = new Card(Age.I, CardType.MILITARY_STRUCTURE, "fake");
+        fake.addCosts(new Coin(2), new Coin(1));
+        assertTrue(fake.validatePayment(new Coin(3)));
+        assertTrue(fake.validatePayment(new Coin(2), new Coin(1)));
+        assertFalse(fake.validatePayment(new Coin(1)));
     }
 
     @Test
     void validateAPaymentWithMultipleResources() {
         DeckAgeIII deck = new DeckAgeIII(3);
         Card stockade = deck.getCard("university");
-        boolean valid = stockade.validatePayment(Resource.WOOD, new Purchase(Resource.WOOD, Direction.LEFT), Resource.PAPYRUS, new Purchase(Resource.GLASS, Direction.RIGHT));
-        assertTrue(valid);
+        assertTrue(stockade.validatePayment(Resource.WOOD, new Purchase(Resource.WOOD, Direction.LEFT), Resource.PAPYRUS, new Purchase(Resource.GLASS, Direction.RIGHT)));
     }
 }

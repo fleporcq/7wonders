@@ -12,10 +12,10 @@ public class CoinTests {
     void apply() {
         WonderBoardFactory wonderBoardFactory = new WonderBoardFactory();
         WonderBoard wonderBoard = wonderBoardFactory.get(City.RHODES, Side.A);
-        Coin coin = new Coin();
+        Coin coin = new Coin(2);
         coin.apply(wonderBoard);
         coin.apply(wonderBoard);
         coin.apply(wonderBoard);
-        assertEquals(3, wonderBoard.getCoins());
+        assertEquals(6, wonderBoard.getCoins());
     }
 }

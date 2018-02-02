@@ -27,27 +27,27 @@ public class DeckAgeI extends Deck {
         add(oreVein, 3, 4);
 
         Card treeFarm = createCard(RAW_MATERIAL, "tree farm");
-        treeFarm.addCosts(new Coin());
+        treeFarm.addCosts(new Coin(1));
         add(treeFarm, 6);
 
         Card excavation = createCard(RAW_MATERIAL, "excavation");
-        excavation.addCosts(new Coin());
+        excavation.addCosts(new Coin(1));
         add(excavation, 4);
 
         Card clayPit = createCard(RAW_MATERIAL, "clay pit");
-        clayPit.addCosts(new Coin());
+        clayPit.addCosts(new Coin(1));
         add(clayPit, 3);
 
         Card timberYard = createCard(RAW_MATERIAL, "timber yard");
-        timberYard.addCosts(new Coin());
+        timberYard.addCosts(new Coin(1));
         add(timberYard, 3);
 
         Card forestCave = createCard(RAW_MATERIAL, "forest cave");
-        forestCave.addCosts(new Coin());
+        forestCave.addCosts(new Coin(1));
         add(forestCave, 5);
 
         Card mine = createCard(RAW_MATERIAL, "mine");
-        mine.addCosts(new Coin());
+        mine.addCosts(new Coin(1));
         add(mine, 6);
 
         Card loom = createCard(MANUFACTURED_GOOD, "loom");

@@ -142,11 +142,11 @@ public class PlayerTests implements DataTestsFactory {
         WonderBoardFactory wonderBoardFactory = new WonderBoardFactory();
         WonderBoard wonderBoard = wonderBoardFactory.get(RHODES, A);
         francois.setWonderBoard(wonderBoard);
-        assertFalse(francois.pay(new Coin()));
+        assertFalse(francois.pay(new Coin(1)));
         wonderBoard.addCoins(3);
-        assertTrue(francois.pay(new Coin()));
-        assertTrue(francois.pay(new Coin(), new Coin()));
-        assertFalse(francois.pay(new Coin()));
+        assertTrue(francois.pay(new Coin(1)));
+        assertTrue(francois.pay(new Coin(2)));
+        assertFalse(francois.pay(new Coin(1)));
         assertEquals(0, wonderBoard.getCoins());
     }
 
@@ -217,7 +217,7 @@ public class PlayerTests implements DataTestsFactory {
         louise.choose(louise.getHand().get("clay pit"));
         antoine.choose(antoine.getHand().get("clay pool"));
         try {
-            louise.build(new Coin());
+            louise.build(new Coin(1));
         } catch (RulesViolationException e) {
             fail(e.getMessage());
         }

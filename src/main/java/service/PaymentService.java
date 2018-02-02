@@ -45,7 +45,7 @@ public class PaymentService {
                 if (!payWithAPurchase(simulate, (Purchase) payment))
                     return false;
             } else if (payment instanceof Coin) {
-                if (!payWithACoin(simulate))
+                if (!payWithACoin(simulate, (Coin) payment))
                     return false;
             } else {
                 return false;
@@ -81,11 +81,11 @@ public class PaymentService {
         return paid;
     }
 
-    private boolean payWithACoin(boolean simulate) {
+    private boolean payWithACoin(boolean simulate, Coin coin) {
         boolean paid = false;
         if (player.getCoins() > 0) {
             if (!simulate)
-                player.removeCoins(1);
+                player.removeCoins(coin.getValue());
             paid = true;
         }
         return paid;

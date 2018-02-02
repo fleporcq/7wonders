@@ -15,19 +15,19 @@ public class DeckAgeII extends Deck {
     @Override
     protected void build() {
         Card sawmill = createCard(RAW_MATERIAL, "sawmill");
-        sawmill.addCosts(new Coin());
+        sawmill.addCosts(new Coin(1));
         add(sawmill, 3, 4);
 
         Card quarry = createCard(RAW_MATERIAL, "quarry");
-        quarry.addCosts(new Coin());
+        quarry.addCosts(new Coin(1));
         add(quarry, 3, 4);
 
         Card brickyard = createCard(RAW_MATERIAL, "brickyard");
-        brickyard.addCosts(new Coin());
+        brickyard.addCosts(new Coin(1));
         add(brickyard, 3, 4);
 
         Card foundry = createCard(RAW_MATERIAL, "foundry");
-        foundry.addCosts(new Coin());
+        foundry.addCosts(new Coin(1));
         add(foundry, 3, 4);
 
         Card loom = createCard(MANUFACTURED_GOOD, "loom");
