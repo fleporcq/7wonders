@@ -15,7 +15,7 @@ public enum Resource implements Bonus, Cost, Payment {
     PAPYRUS;
 
     @Override
-    public void apply(WonderBoard wonderBoard) {
+    public void applyInstant(WonderBoard wonderBoard) {
         wonderBoard.addResource(this);
     }
 

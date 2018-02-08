@@ -18,6 +18,8 @@ public class Card implements Cloneable {
 
     private List<Cost> costs = new ArrayList<>();
 
+    private List<Bonus> bonuses = new ArrayList<>();
+
     public Card(Age age, CardType type, String name) {
         if (age == null)
             throw new IllegalArgumentException("The card's age cannot be null");
@@ -46,6 +48,16 @@ public class Card implements Cloneable {
 
     public List<Cost> getCosts() {
         return costs;
+    }
+
+    public void addBonuses(Bonus... bonuses) {
+        for (int i = 0; i < bonuses.length; i++) {
+            this.bonuses.add(bonuses[i]);
+        }
+    }
+
+    public List<Bonus> getBonuses() {
+        return bonuses;
     }
 
     public void setMinPlayerCount(int minPlayerCount) {

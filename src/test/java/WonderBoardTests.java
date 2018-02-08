@@ -39,7 +39,7 @@ public class WonderBoardTests {
         try {
             rhodes.addCoins(0);
         } catch (IllegalArgumentException e) {
-            assertEquals("The amount must be at least 1", e.getMessage());
+            assertEquals("The count must be at least 1", e.getMessage());
         }
     }
 
@@ -52,7 +52,7 @@ public class WonderBoardTests {
         try {
             rhodes.removeCoins(0);
         } catch (IllegalArgumentException e) {
-            assertEquals("The amount must be at least 1", e.getMessage());
+            assertEquals("The count must be at least 1", e.getMessage());
         }
     }
 

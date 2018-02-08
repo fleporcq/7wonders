@@ -65,7 +65,7 @@ public class Game {
             throw new IllegalArgumentException("They are not enough wonder boards");
         Collections.shuffle(wonderBoards);
         for (Player player : players) {
-            player.setWonderBoard(wonderBoards.remove(0));
+            player.handOutWonderBoard(wonderBoards.remove(0));
         }
     }
 

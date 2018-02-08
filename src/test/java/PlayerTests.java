@@ -107,7 +107,7 @@ public class PlayerTests implements DataTestsFactory {
         Player francois = new Player("François");
         WonderBoardFactory wonderBoardFactory = new WonderBoardFactory();
         WonderBoard wonderBoard = wonderBoardFactory.get(RHODES, A);
-        francois.setWonderBoard(wonderBoard);
+        francois.handOutWonderBoard(wonderBoard);
         wonderBoard.addCoins(3);
         assertTrue(francois.pay(ORE));
         assertFalse(francois.pay(WOOD));
@@ -128,9 +128,9 @@ public class PlayerTests implements DataTestsFactory {
         game.addPlayer(antoine);
         game.start();
         WonderBoardFactory wonderBoardFactory = new WonderBoardFactory();
-        francois.setWonderBoard(wonderBoardFactory.get(RHODES, A));
-        louise.setWonderBoard(wonderBoardFactory.get(BABYLON, A));
-        antoine.setWonderBoard(wonderBoardFactory.get(OLYMPIA, A));
+        francois.handOutWonderBoard(wonderBoardFactory.get(RHODES, A));
+        louise.handOutWonderBoard(wonderBoardFactory.get(BABYLON, A));
+        antoine.handOutWonderBoard(wonderBoardFactory.get(OLYMPIA, A));
         game.handOutCoins(3);
         assertTrue(francois.validatePayment(ORE, new Purchase(WOOD, LEFT), new Purchase(CLAY, RIGHT)));
         assertFalse(francois.validatePayment(ORE, new Purchase(CLAY, LEFT), new Purchase(WOOD, RIGHT)));
@@ -141,7 +141,7 @@ public class PlayerTests implements DataTestsFactory {
         Player francois = new Player("François");
         WonderBoardFactory wonderBoardFactory = new WonderBoardFactory();
         WonderBoard wonderBoard = wonderBoardFactory.get(RHODES, A);
-        francois.setWonderBoard(wonderBoard);
+        francois.handOutWonderBoard(wonderBoard);
         assertFalse(francois.pay(new Coin(1)));
         wonderBoard.addCoins(3);
         assertTrue(francois.pay(new Coin(1)));
@@ -192,9 +192,9 @@ public class PlayerTests implements DataTestsFactory {
         game.addPlayer(antoine);
         game.start();
         WonderBoardFactory wonderBoardFactory = new WonderBoardFactory();
-        francois.setWonderBoard(wonderBoardFactory.get(GIZAH, A));
-        louise.setWonderBoard(wonderBoardFactory.get(BABYLON, A));
-        antoine.setWonderBoard(wonderBoardFactory.get(OLYMPIA, A));
+        francois.handOutWonderBoard(wonderBoardFactory.get(GIZAH, A));
+        louise.handOutWonderBoard(wonderBoardFactory.get(BABYLON, A));
+        antoine.handOutWonderBoard(wonderBoardFactory.get(OLYMPIA, A));
         game.handOutCards(new DeckAgeI(3));
         game.handOutCoins(3);
         francois.choose(francois.getHand().get("baths"));
@@ -234,9 +234,9 @@ public class PlayerTests implements DataTestsFactory {
         game.addPlayer(antoine);
         game.start();
         WonderBoardFactory wonderBoardFactory = new WonderBoardFactory();
-        francois.setWonderBoard(wonderBoardFactory.get(RHODES, A));
-        louise.setWonderBoard(wonderBoardFactory.get(BABYLON, A));
-        antoine.setWonderBoard(wonderBoardFactory.get(OLYMPIA, A));
+        francois.handOutWonderBoard(wonderBoardFactory.get(RHODES, A));
+        louise.handOutWonderBoard(wonderBoardFactory.get(BABYLON, A));
+        antoine.handOutWonderBoard(wonderBoardFactory.get(OLYMPIA, A));
         game.handOutCards(new DeckAgeI(3));
         game.handOutCoins(3);
         francois.choose(francois.getHand().get("stockade"));

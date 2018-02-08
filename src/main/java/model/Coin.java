@@ -20,7 +20,7 @@ public class Coin implements Bonus, Cost, Payment {
     }
 
     @Override
-    public void apply(WonderBoard wonderBoard) {
+    public void applyInstant(WonderBoard wonderBoard) {
         wonderBoard.addCoins(value);
     }
 

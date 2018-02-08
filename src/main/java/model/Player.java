@@ -34,7 +34,8 @@ public class Player {
         return name;
     }
 
-    public void setWonderBoard(WonderBoard wonderBoard) {
+    public void handOutWonderBoard(WonderBoard wonderBoard) {
+        wonderBoard.setOwner(this);
         this.wonderBoard = wonderBoard;
     }
 

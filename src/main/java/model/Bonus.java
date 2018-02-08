@@ -4,5 +4,12 @@ package model;
 import model.wonderboards.WonderBoard;
 
 public interface Bonus {
-    void apply(WonderBoard wonderBoard);
+
+    default void applyInstant(WonderBoard wonderBoard) {
+        // To override if needed
+    }
+
+    default void applyEnd(WonderBoard wonderBoard) {
+        // To override if needed
+    }
 }

@@ -1,10 +1,17 @@
 package model.wonderboards;
 
+import model.Player;
 import model.Resource;
+import model.bonuses.Discount;
+import model.bonuses.MultiResource;
+import model.bonuses.MultiScientificSymbol;
+import model.bonuses.ScientificSymbol;
 import model.cards.Card;
+import model.cards.CardType;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class WonderBoard {
 
@@ -14,9 +21,23 @@ public class WonderBoard {
 
     private List<Resource> resources = new ArrayList<>();
 
+    private List<MultiResource> multiResources = new ArrayList<>();
+
+    private List<Discount> discounts = new ArrayList<>();
+
     private int coins;
 
+    private int victoryPoints;
+
+    private int shields;
+
+    private List<ScientificSymbol> scientificSymbols = new ArrayList<>();
+
+    private List<MultiScientificSymbol> multiScientificSymbols = new ArrayList<>();
+
     private List<Card> builtCards = new ArrayList<>();
+
+    private Player owner;
 
     public WonderBoard(City city, Side side) {
         if (city == null)
@@ -35,20 +56,53 @@ public class WonderBoard {
         return builtCards;
     }
 
+    public int countBuiltCards(CardType type) {
+        return builtCards.stream().filter(c -> c.getType() == type).collect(Collectors.toList()).size();
+    }
+
     public void addResource(Resource resource) {
         this.resources.add(resource);
     }
 
-    public void addCoins(int amount) {
-        if (amount < 1)
-            throw new IllegalArgumentException("The amount must be at least 1");
-        coins += amount;
+    public void addMultiResource(MultiResource multiResource) {
+        this.multiResources.add(multiResource);
     }
 
-    public void removeCoins(int amount) {
-        if (amount < 1)
-            throw new IllegalArgumentException("The amount must be at least 1");
-        coins -= amount;
+    public void addDiscount(Discount discount) {
+        this.discounts.add(discount);
+    }
+
+    public void addCoins(int count) {
+        if (count < 1)
+            throw new IllegalArgumentException("The count must be at least 1");
+        coins += count;
+    }
+
+    public void removeCoins(int count) {
+        if (count < 1)
+            throw new IllegalArgumentException("The count must be at least 1");
+        coins -= count;
+    }
+
+    public void addVictoryPoints(int count) {
+        if (count < 1)
+            throw new IllegalArgumentException("The count must be at least 1");
+        victoryPoints += count;
+    }
+
+    public void addShields(int count) {
+        if (count < 1)
+            throw new IllegalArgumentException("The count must be at least 1");
+        shields += count;
+    }
+
+
+    public void addScientificSymbol(ScientificSymbol scientificSymbol) {
+        scientificSymbols.add(scientificSymbol);
+    }
+
+    public void addMultiScientificSymbol(MultiScientificSymbol multiScientificSymbol) {
+        multiScientificSymbols.add(multiScientificSymbol);
     }
 
     public int getCoins() {
@@ -72,9 +126,16 @@ public class WonderBoard {
         builtCards.add(card);
     }
 
+    public Player getOwner() {
+        return owner;
+    }
+
+    public void setOwner(Player owner) {
+        this.owner = owner;
+    }
+
     @Override
     public String toString() {
         return city + " " + side;
     }
-
 }
