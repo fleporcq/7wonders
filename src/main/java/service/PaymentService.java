@@ -55,10 +55,8 @@ public class PaymentService {
     }
 
     private boolean payWithAPurchase(boolean simulate, Purchase purchase) {
-        return purchase(purchase.getDirection(), purchase.getResource(), simulate);
-    }
-
-    private boolean purchase(Direction direction, Resource resource, boolean simulate) {
+        Direction direction = purchase.getDirection();
+        Resource resource = purchase.getResource();
         List<Resource> resourcesCopy = direction == Direction.LEFT ? leftResourcesCopy : rightResourcesCopy;
         Player neighbor = direction == Direction.LEFT ? leftNeighbor : rightNeighbor;
         if (resourcesCopy.contains(resource) && player.getCoins() > DEFAULT_RESOURCE_COST) {
